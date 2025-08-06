@@ -1,61 +1,214 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Konnie Playables</title>
   <style>
+    :root {
+      --bg: #f6f0fc;
+      --text: #6d32a8;
+      --cardTitle: #6d32a8;
+      --overlayBg: rgba(0, 0, 0, 0.35);
+      --playBg: rgba(255, 215, 0, 0.95);
+      --playText: #000;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f0d14;
+      --text: #caa6ff;
+      --cardTitle: #e5d1ff;
+      --overlayBg: rgba(0, 0, 0, 0.45);
+      --playBg: rgba(255, 215, 0, 0.95);
+      --playText: #000;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f8f4e3;
+      font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+      background: var(--bg);
       margin: 0;
-      padding: 40px;
-      text-align: center;
+      padding: 56px 20px 40px;
+      transition: background .25s ease;
     }
 
     h1 {
-      color: #444;
+      text-align: center;
+      color: var(--text);
+      font-size: 48px;
+      font-weight: 800;
+      margin: 0 0 40px;
+      transition: color .25s ease;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 0;
+      background: var(--playBg);
+      color: var(--playText);
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
     }
 
     .playables {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: start;
+      justify-items: center;
     }
 
-    .playable-link {
-      background: #fff;
-      border: 2px solid #ccc;
-      border-radius: 10px;
-      padding: 20px 30px;
-      text-decoration: none;
-      color: #222;
+    .card {
+      background: transparent;
+      text-align: center;
+    }
+
+    .thumb {
+      position: relative;
+      display: inline-block;
+      width: 280px;
+      height: 420px;
+      transform-origin: center;
+      transition: transform .2s ease;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .thumb .overlay {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      /* убрали затемнение */
+      background: transparent;
+      display: grid;
+      place-items: center;
+    }
+
+    .thumb .play-pill {
+      pointer-events: none;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: rgba(255, 215, 0, 0.95);
+      color: #000;
+      font-weight: 800;
+      letter-spacing: .5px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .25);
+      opacity: 0;
+      /* прячем только кнопку */
+      transform: translateY(4px);
+      /* лёгкий подъём на появление */
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .thumb:hover,
+    .thumb:focus-within {
+      transform: scale(1.03);
+    }
+
+    .thumb:hover .play-pill,
+    .thumb:focus-within .play-pill {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card-title {
       font-size: 18px;
-      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-      transition: all 0.2s ease;
+      font-weight: 700;
+      margin: 10px 0 0;
+      color: var(--cardTitle);
+      transition: color .25s ease;
     }
 
-    .playable-link:hover {
-      background: #ffe680;
-      border-color: #e0b000;
-      transform: translateY(-3px);
+    @media (prefers-reduced-motion: reduce) {
+
+      .thumb,
+      .thumb .overlay,
+      body {
+        transition: none !important;
+      }
     }
   </style>
 </head>
 
 <body>
-  <h1>🎮 konnie-lab playables</h1>
+  <button class="theme-toggle" id="themeBtn" aria-label="Toggle dark mode">Dark mode</button>
+  <h1>Playables by Konnie-lab</h1>
+
   <div class="playables">
-    <!-- <a class="playable-link" href="idleMinerCore/">Idle Miner</a> -->
-    <a class="playable-link" href="idleMinerDesert/">Idle Miner</a>
-    <a class="playable-link" href="ageOfCoins/">Age of Coins</a>
-    <a class="playable-link" href="BattleCopy/">Battle Copy</a>
-    <a class="playable-link" href="quiiiz/">Quiiiz project</a>
-    <!-- Добавляй сюда новые ссылки -->
+
+    <div class="card">
+      <a class="thumb" href="idleMinerDesert/" target="_blank" rel="noopener">
+        <img src="idleMinerDesert/preview.png" alt="Idle Miner Desert" loading="lazy">
+        <div class="overlay">
+          <div class="play-pill">PLAY</div>
+        </div>
+      </a>
+      <div class="card-title">Idle Miner Desert</div>
+    </div>
+
+    <div class="card">
+      <a class="thumb" href="ageOfCoins/" target="_blank" rel="noopener">
+        <img src="ageOfCoins/preview.png" alt="Age of Coins" loading="lazy">
+        <div class="overlay">
+          <div class="play-pill">PLAY</div>
+        </div>
+      </a>
+      <div class="card-title">Age of Coins</div>
+    </div>
+
+    <div class="card">
+      <a class="thumb" href="battleCopy/" target="_blank" rel="noopener">
+        <img src="battleCopy/preview.png" alt="Merge Battle" loading="lazy">
+        <div class="overlay">
+          <div class="play-pill">PLAY</div>
+        </div>
+      </a>
+      <div class="card-title">Merge Battle</div>
+    </div>
+
+    <div class="card">
+      <a class="thumb" href="quiiiz/" target="_blank" rel="noopener">
+        <img src="quiiiz/preview.png" alt="IQ Quiz" loading="lazy">
+        <div class="overlay">
+          <div class="play-pill">PLAY</div>
+        </div>
+      </a>
+      <div class="card-title">IQ Quiz</div>
+    </div>
+
   </div>
+
+  <script>
+    // Тема (переключение и запоминание)
+    const root = document.documentElement;
+    const btn = document.getElementById('themeBtn');
+    const saved = localStorage.getItem('konnie_theme');
+    if (saved) root.setAttribute('data-theme', saved);
+    btn.textContent = root.getAttribute('data-theme') === 'dark' ? 'Light mode' : 'Dark mode';
+
+    btn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('konnie_theme', next);
+      btn.textContent = next === 'dark' ? 'Light mode' : 'Dark mode';
+    });
+  </script>
 </body>
 
 </html>
