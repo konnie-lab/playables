@@ -6,5 +6,6 @@ all while focusing on optimized performance clean code.
 Open to freelance and full-time collaborations. 
  Let’s build something impactful and fun.
 
-
+You can wiew the playables here: https://konnie-lab.github.io/playables/
+You can contact me via Telegram: https://t.me/konnie_lab
 
