@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Konnie Playables</title>
 
   <!-- Fonts (optional but nice) -->
@@ -10,7 +10,6 @@
 
   <style>
     :root{
-      /* Colors & fonts */
       --bg:#f6f0fc;
       --text:#6d32a8;
       --cardTitle:#6d32a8;
@@ -18,45 +17,49 @@
       --playText:#000;
       --heading-font:'Poppins',system-ui,-apple-system,Arial,sans-serif;
       --title-font:'Poppins',system-ui,-apple-system,Arial,sans-serif;
-
-      /* Safe areas for mobile notches */
-      --safe-top: env(safe-area-inset-top, 0px);
-      --safe-right: env(safe-area-inset-right, 0px);
+      --safe-top:env(safe-area-inset-top,0px);
+      --safe-right:env(safe-area-inset-right,0px);
     }
     [data-theme="dark"]{
       --bg:#0f0d14;
       --text:#caa6ff;
       --cardTitle:#e5d1ff;
     }
-
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box }
     body{
       font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;
       background:var(--bg);
       margin:0;
-      padding:56px 20px 40px; /* top padding so the fixed theme button has room */
+      padding:56px 20px 40px;
       transition:background .25s ease;
     }
 
-    /* Fixed theme toggle (never scrolls with content) */
+    /* Fixed theme toggle */
     .theme-toggle{
-      position: fixed;
-      top: calc(12px + var(--safe-top));
-      right: calc(12px + var(--safe-right));
-      z-index: 2147483647; /* above everything */
+      position:fixed;
+      top:calc(12px + var(--safe-top));
+      right:calc(12px + var(--safe-right));
+      z-index:2147483647;
     }
 
-    /* Shared pill button style */
+    /* Shared pill button */
     .pill-btn{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:10px 16px; border-radius:999px; border:0;
-      background:var(--playBg); color:var(--playText);
-      font-weight:800; letter-spacing:.3px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 16px;
+      border-radius:999px;
+      border:0;
+      background:var(--playBg);
+      color:var(--playText);
+      font-weight:800;
+      letter-spacing:.3px;
       box-shadow:0 2px 8px rgba(0,0,0,.15);
-      cursor:pointer; text-decoration:none; white-space:nowrap;
+      cursor:pointer;
+      text-decoration:none;
+      white-space:nowrap;
     }
 
-    /* Page title */
     h1{
       text-align:center;
       color:var(--text);
@@ -69,14 +72,12 @@
       word-break:break-word;
     }
 
-    /* Centered actions row under the title (About button) */
     .top-actions{
       display:flex;
       justify-content:center;
       margin-bottom:28px;
     }
 
-    /* Grid of cards */
     .playables{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -86,54 +87,89 @@
       align-items:start;
       justify-items:center;
     }
-    .card{background:transparent; text-align:center}
+    .card{ background:transparent; text-align:center }
 
-    /* Clickable phone thumbnail */
+    /* Thumbnail */
     .thumb{
-      position:relative; display:inline-block;
-      width:280px; height:420px;
+      position:relative;
+      display:inline-block;
+      width:280px;
+      height:420px;
       transform-origin:center;
-      transition:transform .2s ease;
+      /* hover удалён полностью */
+      transition:none;
     }
-    .thumb img{width:100%; height:100%; display:block; object-fit:cover}
-    .thumb .overlay{pointer-events:none; position:absolute; inset:0; display:grid; place-items:center}
-    .thumb .play-pill{
+    .thumb img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+    }
+    .thumb .overlay{
       pointer-events:none;
-      padding:10px 22px; border-radius:999px;
-      background:var(--playBg); color:var(--playText);
-      font-weight:800; letter-spacing:.5px;
-      box-shadow:0 4px 16px rgba(0,0,0,.25);
-      opacity:0; transform:translateY(4px);
-      transition:opacity .2s ease, transform .2s ease;
+      position:absolute;
+      inset:0;
     }
-    .thumb:hover,.thumb:focus-within{transform:scale(1.03)}
-    .thumb:hover .play-pill,.thumb:focus-within .play-pill{opacity:1; transform:translateY(0)}
+    /* PLAY всегда видна и закреплена снизу */
+    .thumb .play-pill{
+      position:absolute;
+      left:50%;
+      bottom:50%;
+      transform:translateX(-50%);
+      pointer-events:none;
+      padding:10px 22px;
+      border-radius:999px;
+      background:var(--playBg);
+      color:var(--playText);
+      font-weight:800;
+      letter-spacing:.5px;
+      box-shadow:0 4px 16px rgba(0,0,0,.25);
+      opacity:1;           
+      transition:none;     
+    }
+
 
     .card-title{
       font-family:var(--title-font);
-      font-size:18px; font-weight:700; letter-spacing:.2px;
-      margin:10px 0 0; color:var(--cardTitle);
+      font-size:18px;
+      font-weight:700;
+      letter-spacing:.2px;
+      margin:10px 0 0;
+      color:var(--cardTitle);
       transition:color .25s ease;
     }
 
-    /* Modal (About / Contacts) */
+    /* Modal */
     .modal-backdrop{
-      position:fixed; inset:0; background:rgba(0,0,0,.45);
-      display:none; align-items:center; justify-content:center;
-      z-index:2147483000; padding:20px;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.45);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:2147483000;
+      padding:20px;
     }
-    .modal-backdrop.show{display:flex}
+    .modal-backdrop.show{ display:flex }
     .modal{
-      background:#fff; color:#222; max-width:520px; width:100%;
-      border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.35);
-      position:relative; padding:22px 20px 18px;
+      background:#fff; color:#222;
+      max-width:520px; width:100%;
+      border-radius:16px;
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+      position:relative;
+      padding:22px 20px 18px;
     }
-    [data-theme="dark"] .modal{background:#1b1723; color:#eae6f5}
+    [data-theme="dark"] .modal{ background:#1b1723; color:#eae6f5 }
     .modal h2{
-      margin:0 0 12px; font-family:var(--heading-font); font-weight:800; color:var(--text);
+      margin:0 0 12px;
+      font-family:var(--heading-font);
+      font-weight:800;
+      color:var(--text);
     }
-    .modal p{margin:0 0 12px; line-height:1.45}
-    .modal .links{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+    .modal p{ margin:0 0 12px; line-height:1.45 }
+    .modal .links{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;
+    }
     .modal .links a{
       text-decoration:none; padding:8px 12px; border-radius:10px;
       background:var(--playBg); color:var(--playText); font-weight:800;
@@ -144,27 +180,34 @@
       width:36px; height:36px; border-radius:999px; border:0;
       background:transparent; color:inherit; cursor:pointer;
     }
-    .modal-close:before{content:"✕"; font-size:18px; line-height:36px; display:block; text-align:center}
+    .modal-close:before{
+      content:"✕"; font-size:18px; line-height:36px; display:block; text-align:center;
+    }
 
     @media (prefers-reduced-motion:reduce){
-      .thumb,.thumb .overlay,body{transition:none!important}
+      .thumb, .thumb .overlay, body{ transition:none !important }
     }
   </style>
 </head>
 <body>
-  <!-- FIXED theme toggle (stays in the top-right while scrolling) -->
   <button class="pill-btn theme-toggle" id="themeBtn" aria-label="Toggle dark mode">Dark mode</button>
 
-  <!-- Title -->
   <h1>Playables by Konnie-lab</h1>
 
-  <!-- Centered About button -->
   <div class="top-actions">
     <button class="pill-btn" id="aboutBtn" aria-haspopup="dialog" aria-controls="aboutModal">About / Contacts</button>
   </div>
 
   <!-- Gallery -->
   <div class="playables">
+    <div class="card">
+      <a class="thumb" href="adorableGarden/" target="_blank" rel="noopener">
+        <img src="adorableGarden/preview.png" alt="Adorable Garden" loading="lazy" width="280" height="420">
+        <div class="overlay"><div class="play-pill">PLAY</div></div>
+      </a>
+      <div class="card-title">Adorable Garden</div>
+    </div>
+
     <div class="card">
       <a class="thumb" href="idleMinerDesert/" target="_blank" rel="noopener">
         <img src="idleMinerDesert/preview.png" alt="Idle Miner Desert" loading="lazy" width="280" height="420">
@@ -203,15 +246,15 @@
     <div class="modal" id="aboutModal">
       <button class="modal-close" id="aboutClose" aria-label="Close"></button>
       <h2 id="aboutTitle">Konnie-lab</h2>
-          <p>
-      Hi, I’m Konstantin. I craft <strong>playable ads</strong> that grab attention, 
-      keep players engaged, and deliver smooth gameplay  — 
-      all while focusing on optimized performance &amp; clean code.
-    </p>
-    <p>
-      Open to <strong>freelance</strong> and <strong>full-time</strong> collaborations. 
-      Let’s build something impactful and fun.
-    </p>
+      <p>
+        Hi, I’m Konstantin. I craft <strong>playable ads</strong> that grab attention,
+        keep players engaged, and deliver smooth gameplay —
+        all while focusing on optimized performance &amp; clean code.
+      </p>
+      <p>
+        Open to <strong>freelance</strong> and <strong>full-time</strong> collaborations.
+        Let’s build something impactful and fun.
+      </p>
       <div class="links">
         <a href="http://t.me/konnie_lab" target="_blank" rel="noopener">Telegram</a>
         <a href="mailto:konnie.feliz@gmail.com">Email</a>
@@ -229,7 +272,7 @@
       themeBtn.textContent = root.getAttribute('data-theme') === 'dark' ? 'Light mode' : 'Dark mode';
     }
     updateThemeLabel();
-    themeBtn.addEventListener('click', () => {
+    themeBtn.addEventListener('click', ()=>{
       const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
       localStorage.setItem('konnie_theme', next);
@@ -237,13 +280,13 @@
     });
 
     // Global image fallback
-    (function () {
+    (function (){
       const fallbackSrc = '/playables/fallback.png';
-      document.querySelectorAll('.thumb img').forEach(img => {
-        img.addEventListener('error', function onErr() {
+      document.querySelectorAll('.thumb img').forEach(img=>{
+        img.addEventListener('error', function onErr(){
           img.removeEventListener('error', onErr);
           img.src = fallbackSrc;
-        }, { once: true });
+        }, { once:true });
       });
     })();
 
@@ -257,12 +300,12 @@
       lastFocus = document.activeElement;
       backdrop.classList.add('show');
       document.body.classList.add('modal-open');
-      closeBtn.focus({preventScroll:true});
+      closeBtn.focus({ preventScroll:true });
     }
     function closeModal(){
       backdrop.classList.remove('show');
       document.body.classList.remove('modal-open');
-      if (lastFocus) lastFocus.focus({preventScroll:true});
+      if (lastFocus) lastFocus.focus({ preventScroll:true });
     }
 
     aboutBtn.addEventListener('click', openModal);
