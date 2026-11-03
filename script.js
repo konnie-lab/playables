@@ -4,6 +4,9 @@ const loading = document.getElementById('loadingScreen');
 const status = document.getElementById('playerStatus');
 const restart = document.getElementById('restartBtn');
 const expand = document.getElementById('expandBtn');
+const sound = document.getElementById('soundBtn');
+let gameSound;
+let soundMuted;
 const close = document.querySelector('.close-player');
 const motion = document.getElementById('motionBtn');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -61,6 +64,9 @@ function updateGamePause() {
 }
 
 function waitForGame() {
+  gameSound?.off('soundChanged', syncSoundButton);
+  gameSound = null;
+  sound.disabled = true;
   clearInterval(readyTimer);
   clearTimeout(loadDeadline);
   readyTimer = setInterval(() => {
@@ -69,6 +75,11 @@ function waitForGame() {
     clearTimeout(loadDeadline);
     loading.hidden = true;
     restart.disabled = false;
+    gameSound = frame.contentWindow.app.main.soundButton;
+    if (soundMuted !== undefined) gameSound.setMuted(soundMuted);
+    gameSound.on('soundChanged', syncSoundButton);
+    syncSoundButton(gameSound.muted);
+    sound.disabled = false;
     status.textContent = '';
     if (gameDocument !== frame.contentDocument) {
       gameDocument = frame.contentDocument;
@@ -89,12 +100,29 @@ function waitForGame() {
 frame.addEventListener('load', waitForGame);
 waitForGame();
 
+function syncSoundButton(muted) {
+  soundMuted = muted;
+  sound.setAttribute('aria-pressed', String(!muted));
+  sound.title = muted ? 'Turn sound on' : 'Mute sound';
+  sound.querySelector('[data-sound-label]').textContent = muted ? 'Sound off' : 'Sound on';
+  sound.classList.toggle('is-muted', muted);
+}
+
+sound.addEventListener('click', () => {
+  if (!gameSound) return;
+  gameSound.setMuted(!gameSound.muted);
+  // Keep audio activation in the trusted click, including clicks outside the iframe.
+  frame.contentWindow.app.audio.unlock();
+});
+
 restart.addEventListener('click', () => {
   loading.hidden = false;
   restart.disabled = true;
+  sound.disabled = true;
+  gameSound?.off('soundChanged', syncSoundButton);
+  gameSound = null;
   status.textContent = 'Restarting Castle Duels…';
   frame.src = frame.src;
-  waitForGame();
 });
 
 function setExpanded(value) {

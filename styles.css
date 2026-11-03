@@ -172,6 +172,12 @@ body.player-expanded{overflow:hidden}.phone-dock.is-expanded{position:fixed;inse
   width: min(calc((100dvh - 102px) * 390 / 740), calc(100vw - 24px));
 }
 .is-expanded .player-controls { margin-top: 6px; }
+.player-controls { gap: 9px; }
+.player-controls button { min-height: 40px; gap: 5px; }
+.player-controls button [data-sound-label] { font-size: inherit; white-space: nowrap; }
+.player-controls button:disabled { opacity: .5; cursor: wait; }
+.sound-cross, .is-muted .sound-waves { display: none; }
+.is-muted .sound-cross { display: block; }
 .is-expanded .phone-hint { font-size: 10px; }
 @media(max-width:1050px) { .credibility-section { gap: 35px; } }
 @media(max-width:720px) {
