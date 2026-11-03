@@ -1,0 +1,104 @@
+/* Experimental Castle Duels scene. The original is preserved at tag workshop-v1. */
+.castle-workshop .workshop-art {
+  background-image: url('assets/castle-workshop/background.webp');
+}
+
+.conveyor-character {
+  position: absolute;
+  left: 2%;
+  top: 42.2%;
+  width: 14%;
+  aspect-ratio: 1;
+  animation: conveyor-travel 24s linear infinite;
+}
+.conveyor-orange { animation-delay: -3s; }
+.conveyor-blue { animation-delay: -11s; }
+.conveyor-bear { animation-delay: -19s; }
+.character-figure {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: 50% 84%;
+  animation: mage-idle 4s ease-in-out infinite;
+}
+.conveyor-blue .character-figure { animation-delay: -1.8s; }
+.conveyor-bear .character-figure { animation: bear-idle 3.5s ease-in-out infinite; }
+.character-shadow {
+  position: absolute;
+  bottom: 14%;
+  left: 24%;
+  width: 52%;
+  height: 6%;
+  border-radius: 50%;
+  background: #13232180;
+  filter: blur(4px);
+}
+.spell-orb {
+  position: absolute;
+  right: -2%;
+  top: 10%;
+  width: 35%;
+  animation: spell-charge 3.8s ease-in-out infinite;
+}
+.spell-warm { filter: hue-rotate(-145deg) saturate(1.2); }
+.conveyor-blue .spell-orb { animation-delay: -1.9s; }
+
+.chamber-content {
+  position: absolute;
+  left: 47.6%;
+  top: 7.8%;
+  width: 17.3%;
+  height: 20.4%;
+  overflow: hidden;
+  border-radius: 13% 13% 24% 24%;
+  isolation: isolate;
+}
+.chamber-content img { position: absolute; object-fit: contain; animation: chamber-float 6s ease-in-out infinite; animation-delay: var(--float-delay, 0s); }
+.chamber-mage-orange { left: 0; top: 13%; width: 40%; }
+.chamber-mage-blue { right: 0; top: 17%; width: 40%; --float-delay: -2s; }
+.chamber-bear { left: 14%; bottom: -7%; width: 61%; --float-delay: -4s; }
+.chamber-spell { left: 40%; top: 27%; width: 20%; }
+.chamber-content .chamber-spell { animation-name: spell-charge; animation-duration: 4s; }
+.chamber-content::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(100deg, #c9faff16, transparent 18%, transparent 74%, #dafaff20 89%, transparent);
+  border-left: 1px solid #c7f4ff2a;
+  border-right: 1px solid #fff4cc26;
+  border-radius: inherit;
+}
+
+@keyframes conveyor-travel {
+  0% { opacity: 0; transform: translate(0, 0); }
+  8% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { opacity: 0; transform: translate(220%, -46%); }
+}
+@keyframes mage-idle {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg) translateY(-1%); }
+}
+@keyframes bear-idle {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-2%) rotate(1deg); }
+}
+@keyframes spell-charge {
+  0%, 100% { opacity: .5; transform: scale(.8) translateY(5%); }
+  50% { opacity: 1; transform: scale(1.08) translateY(-8%); }
+}
+@keyframes chamber-float {
+  0%, 100% { transform: translateY(2%) rotate(-3deg); }
+  50% { transform: translateY(-5%) rotate(3deg); }
+}
+.ambience-paused .workshop-art *,
+.workshop-offscreen .workshop-art * { animation-play-state: paused; }
+
+@media(prefers-reduced-motion:reduce) {
+  .conveyor-orange { transform: translate(28%, -6%); }
+  .conveyor-blue { transform: translate(100%, -21%); }
+  .conveyor-bear { transform: translate(174%, -36%); }
+}

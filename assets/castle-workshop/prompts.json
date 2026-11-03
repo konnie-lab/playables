@@ -1,0 +1,54 @@
+{
+  "tool": "Built-in image_gen.imagegen",
+  "references": "Character references rendered from the actual Castle Duels runtime and textures.",
+  "assets": [
+    {
+      "name": "background",
+      "referenced_image_paths": [
+        "C:\\JS\\playables-main\\assets\\workshop-layers\\background-gears.png",
+        "C:\\JS\\playables-main\\assets\\castle-workshop\\mage_orange-reference.png",
+        "C:\\JS\\playables-main\\assets\\castle-workshop\\mage_blue-reference.png",
+        "C:\\JS\\playables-main\\assets\\castle-workshop\\bear-reference.png",
+        "C:\\JS\\playables-main\\assets\\castle-workshop\\gameplay-reference.png"
+      ],
+      "transparent_background": false,
+      "prompt": "Edit image 1, the existing 1536x1024 Konnie Lab workshop, into a Castle Duels playable workshop. Images 2-4 are actual game character renders, image 5 actual gameplay. Preserve EXACT composition, camera, lighting, all machine and conveyor geometry, brass KONNIE LAB nameplate, furniture, glass chamber shape and the EMPTY two-gear recess below the plaque. Keep incoming conveyor COMPLETELY EMPTY for later animated sprites; no characters or arrows on the belt. Changes ONLY: (1) remove ALL sunflower, sheep, stars, green play button, cube and stick figure from INSIDE the large glass chamber. Leave it EMPTY and see-through with glowing cyan circular energy rings and beautiful glass reflections, ready for animated character overlays. (2) Replace scenic farm artwork on the upright phone and lower-right tablet screens with Castle Duels artwork matching image 5: warm yellow tiled arena, red-roof cream stone castle, small orange and blue wizards and a chunky brown bear. No farm, sunflower or sheep on screens. (3) On the left scene editor monitor, replace farm wireframe with a wireframe castle courtyard and a wizard rig, scene list labels Mages, Bear, Spells, Arena. The code monitor can use mage and spell words instead of sunflower. (4) Replace the little landscape diorama at bottom-right with a miniature cream stone castle wall, yellow arena tiles and a small orange crystal. Preserve other room furnishings. No changes to layout or machine structure, no added text outside existing monitors. Same 1536x1024 framing."
+    },
+    {
+      "name": "mage-orange",
+      "referenced_image_paths": [
+        "C:\\JS\\playables-main\\assets\\castle-workshop\\mage_orange-reference.png",
+        "C:\\JS\\playables-main\\assets\\workshop-layers\\background-gears.png"
+      ],
+      "transparent_background": true,
+      "prompt": "Create one transparent sprite of the EXACT orange Castle Duels wizard in reference 1, lit and rendered to fit the miniature workshop in reference 2. Preserve its short stout proportions, orange bent pointed broad-brim hat with brown band and gold rectangular buckle, long ivory moustache and beard, orange robe, brown shoes, brown staff held in its right hand (viewer left) with gold orb and gold fittings. Preserve face and game character identity. Polished stylized 3D toy rendering with slightly faceted surfaces, warm upper-right key light and cool blue rim light. Full body and staff fully visible, three-quarter frontal view slightly from above, relaxed standing pose. One character centered in a square with 12% transparent padding. No pedestal, no ground, no floor shadow, no backdrop, no text, no other objects. True RGBA transparent background."
+    },
+    {
+      "name": "mage-blue",
+      "referenced_image_paths": [
+        "C:\\JS\\playables-main\\assets\\castle-workshop\\mage_blue-reference.png",
+        "C:\\JS\\playables-main\\assets\\workshop-layers\\background-gears.png"
+      ],
+      "transparent_background": true,
+      "prompt": "Create one transparent sprite of the EXACT cyan-blue Castle Duels wizard in reference 1, lit and rendered to fit the miniature workshop in reference 2. Preserve its short stout proportions, bright cyan bent pointed broad-brim hat with brown band and gold rectangular buckle, long ivory moustache and beard, cyan robe, brown shoes, brown staff held in its right hand (viewer left) with blue orb and gold fittings. Preserve face and game character identity. Polished stylized 3D toy rendering with slightly faceted surfaces, warm upper-right key light and cool blue rim light. Full body and staff fully visible, three-quarter frontal view slightly from above, relaxed standing pose. One character centered in a square with 12% transparent padding. No pedestal, no ground, no floor shadow, no backdrop, no text, no other objects. True RGBA transparent background."
+    },
+    {
+      "name": "bear",
+      "referenced_image_paths": [
+        "C:\\JS\\playables-main\\assets\\castle-workshop\\bear-reference.png",
+        "C:\\JS\\playables-main\\assets\\workshop-layers\\background-gears.png"
+      ],
+      "transparent_background": true,
+      "prompt": "Create one transparent sprite of the EXACT Castle Duels bear in reference 1, rendered to fit the miniature workshop in reference 2. Preserve the broad stocky brown low-poly bear, heavy brow, little round ears, pale tan muzzle, dark nose, small yellow eyes, cyan diamond marking on forehead and blue marking on back, large paws, chunky faceted fur masses. No cartoon redesign or smiling expression. Full body all four paws visible, three-quarter front view slightly from above, standing neutral but alert. Polished stylized 3D toy material, warm upper-right key and cool blue rim light. One bear centered in square with ample transparent padding. No ground, no floor shadow, no pedestal, no letters, no backdrop or other objects. True RGBA transparent background."
+    },
+    {
+      "name": "spell",
+      "referenced_image_paths": [
+        "C:\\JS\\playables-main\\assets\\castle-workshop\\mage_blue-reference.png",
+        "C:\\JS\\playables-main\\assets\\castle-workshop\\mage_orange-reference.png"
+      ],
+      "transparent_background": true,
+      "prompt": "One isolated compact magical spell orb sprite for the Castle Duels wizard workshop. Luminous cyan-blue sphere with a brilliant white-blue core, two delicate orbiting arcs of electricity and a few small crystalline sparks close to it. Stylized 3D mobile fantasy game collectible, polished and readable at tiny size, no long trail or large explosion. True transparent falloff around a restrained glow. Single centered orb in a square, generous transparent padding, no ground, no background, no characters, no text, no border. Genuine RGBA transparency. Cyan primary color; a warm variant will be made by hue rotation in the page."
+    }
+  ]
+}
