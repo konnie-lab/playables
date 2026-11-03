@@ -10,8 +10,8 @@
   width: 14%;
   aspect-ratio: 1;
 }
-.conveyor-orange { transform: translate(28%, -6%); }
-.conveyor-blue { transform: translate(100%, -21%); }
+.conveyor-orange { transform: translate(28%, -13%); }
+.conveyor-blue { transform: translate(100%, -28%); }
 .conveyor-bear { transform: translate(174%, -36%); }
 .character-figure {
   position: relative;
@@ -20,10 +20,11 @@
   height: 100%;
   object-fit: contain;
   transform-origin: 50% 84%;
-  animation: mage-idle 7s ease-in-out infinite;
+  animation: mage-idle 6s ease-in-out infinite;
 }
-.conveyor-blue .character-figure { animation-delay: -1.8s; }
-.conveyor-bear .character-figure { animation: bear-idle 8s ease-in-out infinite; }
+.conveyor-blue .character-figure { animation: mage-hop 10s ease-in-out infinite; animation-delay: -3s; }
+.conveyor-bear .character-figure { animation: bear-idle 9s ease-in-out infinite; }
+.conveyor-blue .character-shadow { animation: hop-shadow 10s ease-in-out infinite; animation-delay: -3s; }
 .character-shadow {
   position: absolute;
   bottom: 14%;
@@ -36,10 +37,10 @@
 }
 .spell-orb {
   position: absolute;
-  right: -2%;
-  top: 10%;
-  width: 35%;
-  animation: spell-charge 6s ease-in-out infinite;
+  right: -10%;
+  top: -3%;
+  width: 49%;
+  animation: spell-charge 6.5s ease-in-out infinite;
 }
 .spell-warm { filter: hue-rotate(-145deg) saturate(1.2); }
 .conveyor-blue .spell-orb { animation-delay: -1.9s; }
@@ -55,11 +56,12 @@
   isolation: isolate;
 }
 .chamber-content img { position: absolute; object-fit: contain; animation: chamber-float 9s ease-in-out infinite; animation-delay: var(--float-delay, 0s); }
-.chamber-mage-orange { left: 0; top: 13%; width: 40%; }
-.chamber-mage-blue { right: 0; top: 17%; width: 40%; --float-delay: -2s; }
-.chamber-bear { left: 14%; bottom: -7%; width: 61%; --float-delay: -4s; }
-.chamber-spell { left: 40%; top: 27%; width: 20%; }
-.chamber-content .chamber-spell { animation-name: spell-charge; animation-duration: 7s; }
+.chamber-rider { left: -3%; bottom: -1%; width: 60%; }
+.chamber-mage-upgraded { right: -4%; bottom: 2%; width: 52%; --float-delay: -3s; }
+.chamber-vortex { position: absolute; left: 33%; top: 25%; width: 35%; aspect-ratio: 1; animation: spell-charge 7s ease-in-out infinite; animation-delay: -2s; }
+.chamber-vortex img { inset: 0; width: 100%; animation: none; }
+.vortex-ring { position: absolute; inset: 22% 4%; border: 1px solid #a9faffaa; border-radius: 50%; box-shadow: 0 0 6px #4defff80; transform: rotate(-28deg); }
+.vortex-ring-gold { inset: 6% 25%; border-color: #ffde8799; box-shadow: 0 0 5px #ffd57460; transform: rotate(32deg); }
 .chamber-content::after {
   content: '';
   position: absolute;
@@ -72,16 +74,34 @@
 }
 
 @keyframes mage-idle {
-  0%, 100% { transform: rotate(-.6deg); }
-  50% { transform: rotate(.6deg) scaleY(1.008); }
+  0%, 100% { transform: rotate(-2deg); }
+  40% { transform: rotate(2.5deg) scaleY(1.02); }
+  70% { transform: rotate(-.5deg); }
+}
+@keyframes mage-hop {
+  0%, 55%, 83%, 100% { transform: translateY(0) scale(1); }
+  60% { transform: scale(1.04, .94); }
+  67% { transform: translateY(-7%) rotate(-3deg) scale(.98, 1.02); }
+  74% { transform: scale(1.04, .95); }
+  79% { transform: translateY(-1%); }
+}
+@keyframes hop-shadow {
+  0%, 55%, 83%, 100% { transform: scaleX(1); opacity: .85; }
+  67% { transform: scaleX(.7); opacity: .45; }
+  74% { transform: scaleX(1.07); opacity: .9; }
 }
 @keyframes bear-idle {
-  0%, 100% { transform: scaleY(1); }
-  50% { transform: scaleY(1.012); }
+  0%, 38%, 75%, 100% { transform: rotate(0) scale(1); }
+  48% { transform: rotate(-2deg) scale(1.015, .98); }
+  58% { transform: rotate(1.5deg) scale(.99, 1.025); }
+  67% { transform: rotate(-.7deg); }
 }
 @keyframes spell-charge {
-  0%, 100% { opacity: .55; transform: scale(.9); }
-  50% { opacity: .8; transform: scale(1); }
+  0%, 100% { opacity: .25; transform: translate(-4%, 4%) scale(.85) rotate(-8deg); }
+  25% { opacity: .95; transform: translate(7%, -9%) scale(1.06) rotate(7deg); }
+  43% { opacity: .45; }
+  60% { opacity: 1; transform: translate(-6%, -15%) scale(.95) rotate(-5deg); }
+  82% { opacity: .2; transform: translate(-10%, -3%) scale(.8) rotate(10deg); }
 }
 @keyframes chamber-float {
   0%, 100% { transform: translateY(1%) rotate(-.6deg); }

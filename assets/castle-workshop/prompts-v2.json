@@ -1,0 +1,17 @@
+{
+  "rider": {
+    "references": [
+      "mage-orange.png",
+      "bear.png"
+    ],
+    "prompt": "Use case: compositing. Asset type: transparent game character sprite for a small glass chamber in a warm toy-like 3D workshop. Input image 1: exact orange wizard identity. Input image 2: exact brown bear identity. Create ONE cohesive duo: the small orange wizard sits astride the bear's back, legs visibly bent hanging naturally on both sides, holding his gold-orb staff. Bear stands on four paws facing front-left in same three-quarter view as reference. Preserve orange pointed hat with brown band and gold buckle, ivory beard, orange cloak; preserve brown faceted bear, yellow eyes and cyan forehead diamond. Wizard should be smaller than bear, clearly riding rather than standing or floating. Match references' polished low-poly 3D toy style, warm upper-right key light and cyan left rim light. Entire bear, wizard, hat and staff visible; centered, compact silhouette occupying 85% canvas, modest transparent margins. Actual transparent background, no ground plane, no scenery, no glass, no pedestal, no text, no extra characters."
+  },
+  "upgradedMage": {
+    "references": [
+      "mage-upgraded-reference.png",
+      "mage-orange.png"
+    ],
+    "prompt": "Use case: style-transfer. Asset type: single transparent upgraded wizard sprite for our miniature workshop. Input 1 is the ACTUAL VORTEX level-4 upgraded mage from the game and is the identity reference; input 2 is the existing portfolio mage and is ONLY a lighting/render-quality reference. Recreate input 1 as a polished faceted 3D toy matching input2 lighting. Preserve the upgraded design exactly: tall crooked orange-gold and cyan paneled hat with layered brown bands and a LARGE square gold setting with a blue gemstone on the front (not a normal buckle), angular wide hat brim, ivory bushy mustache and beard, orange-and-cyan divided cloak with gold trim and pointed high collar, brown staff with gold ornament, little dark boots. Face visible beneath brim; confident expression. Clear entire standing or lightly levitating figure in front three-quarter view, centered with 10% margins. Warm upper-right key light, cyan left rim light. Must read as a more powerful version of the ordinary mage, same playful game identity. Actual transparent background. No bear, no scenery, no ground plane, no text, no level labels.",
+    "referenceOrigin": "Rendered MageMeshTop with mageTop_blueOrange material from the native Castle Duels build (VORTEX level 4)."
+  }
+}
