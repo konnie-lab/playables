@@ -2,9 +2,10 @@
 // Same star texture, 46-particle burst, drag, gravity and cubic fade.
 // No renderer loop runs between bursts or while ambience is paused.
 class SparkBurstFX {
-  constructor(host, texture, delay) {
+  constructor(host, texture, delay, interval = 8000) {
     this.texture = texture;
     this.delay = delay;
+    this.interval = interval;
     this.particles = [];
     this.running = false;
     this.timer = null;
@@ -88,6 +89,6 @@ class SparkBurstFX {
       context.restore();
     }
     if (this.particles.length) this.frame = requestAnimationFrame(this.update);
-    else this.schedule(8000);
+    else this.schedule(this.interval);
   };
 }

@@ -22,7 +22,7 @@ const artwork = document.querySelector('.workshop-art');
 
 const sparkTexture = new Image();
 const sparkBursts = [...document.querySelectorAll('.spell-fx')]
-  .map((host, index) => new SparkBurstFX(host, sparkTexture, 1400 + index * 2400));
+  .map((host, index) => new SparkBurstFX(host, sparkTexture, 1400 + index * 2400, Number(host.dataset.interval) || 8000));
 sparkTexture.addEventListener('load', updateWorkshopEffects);
 sparkTexture.src = 'assets/castle-workshop/star_fx_yellow.webp';
 
