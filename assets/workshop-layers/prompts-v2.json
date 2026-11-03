@@ -1,0 +1,37 @@
+{
+  "tool": "Built-in image_gen.imagegen",
+  "assets": [
+    {
+      "name": "background-gears",
+      "referenced_image_paths": [
+        "C:\\JS\\playables-main\\assets\\workshop-layers\\background.png"
+      ],
+      "transparent_background": false,
+      "prompt": "Precise local edit of the supplied 1536x1024 workshop background. Preserve the entire image exactly: camera, lighting, empty conveyor, machine body, brass KONNIE LAB sign, glass chamber, screens, objects, furniture. Inside the machine's FRONT rectangular recessed gear window directly BELOW the KONNIE LAB plaque, remove ONLY the TWO largest brass gears on the LEFT half of that window: the smaller upper-left wheel around image coordinate (812,546) and larger lower-left wheel around (849,596). Reconstruct a dark bronze inner mechanism recess behind those two wheels, ready to overlay animated gears. Keep the small gears at the right of that window, glow and sparks at lower-right, all window borders, external gears on the LEFT side of the machine, all pipes and everything else completely unchanged. Do not remove the machine's external side gears. No characters or chevrons on conveyor. Output same 1536x1024 composition."
+    },
+    {
+      "name": "cube",
+      "referenced_image_paths": [
+        "C:\\JS\\Konnie-Lab\\konnie-lab-workshop.png"
+      ],
+      "transparent_background": true,
+      "prompt": "Create ONE isolated luminous cyan-blue holographic wireframe cube sprite, matching the cube on the incoming conveyor of the supplied Konnie Lab workshop reference. Thin brilliant white-cyan edges, subtle blue halo with transparent falloff, all 12 cube edges including fainter back edges visible, three-quarter isometric view, slightly taller in projection like the reference. The interior and surroundings are genuinely transparent, not a solid glass cube, no ground, no background, no panel, no characters, no letters, no extra objects. Centered 1024x1024 asset with generous padding. Polished 3D game workshop visual, true RGBA transparency."
+    },
+    {
+      "name": "rig",
+      "referenced_image_paths": [
+        "C:\\JS\\Konnie-Lab\\konnie-lab-workshop.png"
+      ],
+      "transparent_background": true,
+      "prompt": "Create ONE isolated full-body glowing cyan-white animation rig mannequin sprite, matching the small luminous stick figure on the incoming conveyor of the Konnie Lab workshop reference. Simplified 3D skeleton: round oval head, narrow white rods for neck spine arms legs, small cyan-white ball joints at shoulders elbows wrists pelvis knees ankles. No skin, clothes, face or robot armor. Friendly neutral pose with arms spread downward, elbows slightly bent, legs apart, feet visible, slightly three-quarter facing camera. Thin white-cyan glow and restrained blue halo with transparent falloff. Same camera angle as original conveyor figure. One complete figure centered with generous padding, no ground or background, no text or other objects. True transparent RGBA 1024x1024 sprite."
+    },
+    {
+      "name": "gear",
+      "referenced_image_paths": [
+        "C:\\JS\\playables-main\\assets\\workshop-layers\\background.png"
+      ],
+      "transparent_background": true,
+      "prompt": "Create ONE isolated circular brass gear sprite matching the warm bronze steampunk machinery inside the FRONT window beneath KONNIE LAB in this reference. Crucial: STRICTLY FRONT-ON ORTHOGRAPHIC VIEW, perfectly circular symmetrical silhouette, NOT tilted or elliptical; perspective will be applied in code. About 20 evenly spaced chunky machined teeth, a raised central bronze spindle hub, six circular dark through-holes around the center, concentric engraved rings, warm antique golden brass with restrained highlights and dark bronze bevels. No shadows outside the gear; transparent gaps and holes, NO backdrop, NO housing, NO ground, NO letters. Warm amber material with subtle cool fill to match scene, not overly shiny or orange. One centered perfectly circular wheel fully visible, generous transparent padding, 1024x1024 true RGBA sprite."
+    }
+  ]
+}

@@ -1,425 +1,88 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Konnie Playables</title>
-
-  <!-- Fonts (optional but nice) -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #f6f0fc;
-      --text: #6d32a8;
-      --cardTitle: #6d32a8;
-      --playBg: rgba(255, 215, 0, .95);
-      --playText: #000;
-      --heading-font: 'Poppins', system-ui, -apple-system, Arial, sans-serif;
-      --title-font: 'Poppins', system-ui, -apple-system, Arial, sans-serif;
-      --safe-top: env(safe-area-inset-top, 0px);
-      --safe-right: env(safe-area-inset-right, 0px);
-    }
-
-    [data-theme="dark"] {
-      --bg: #0f0d14;
-      --text: #caa6ff;
-      --cardTitle: #e5d1ff;
-    }
-
-    * {
-      box-sizing: border-box
-    }
-
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
-      background: var(--bg);
-      margin: 0;
-      padding: 56px 20px 40px;
-      transition: background .25s ease;
-    }
-
-    /* Fixed theme toggle */
-    .theme-toggle {
-      position: fixed;
-      top: calc(12px + var(--safe-top));
-      right: calc(12px + var(--safe-right));
-      z-index: 2147483647;
-    }
-
-    /* Shared pill button */
-    .pill-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 0;
-      background: var(--playBg);
-      color: var(--playText);
-      font-weight: 800;
-      letter-spacing: .3px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
-      cursor: pointer;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    h1 {
-      text-align: center;
-      color: var(--text);
-      font-family: var(--heading-font);
-      font-size: 48px;
-      font-weight: 800;
-      letter-spacing: .3px;
-      margin: 0 0 12px;
-      transition: color .25s ease;
-      word-break: break-word;
-    }
-
-    .top-actions {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 28px;
-    }
-
-    .playables {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-      align-items: start;
-      justify-items: center;
-    }
-
-    .card {
-      background: transparent;
-      text-align: center
-    }
-
-    /* Thumbnail */
-    .thumb {
-      position: relative;
-      display: inline-block;
-      width: 280px;
-      height: 420px;
-      transform-origin: center;
-      /* hover удалён полностью */
-      transition: none;
-    }
-
-    .thumb img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-    }
-
-    .thumb .overlay {
-      pointer-events: none;
-      position: absolute;
-      inset: 0;
-    }
-
-    /* PLAY всегда видна и закреплена снизу */
-    .thumb .play-pill {
-      position: absolute;
-      left: 50%;
-      bottom: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-      padding: 10px 22px;
-      border-radius: 999px;
-      background: var(--playBg);
-      color: var(--playText);
-      font-weight: 800;
-      letter-spacing: .5px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, .25);
-      opacity: 1;
-      transition: none;
-    }
-
-
-    .card-title {
-      font-family: var(--title-font);
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: .2px;
-      margin: 10px 0 0;
-      color: var(--cardTitle);
-      transition: color .25s ease;
-    }
-
-    /* Modal */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, .45);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 2147483000;
-      padding: 20px;
-    }
-
-    .modal-backdrop.show {
-      display: flex
-    }
-
-    .modal {
-      background: #fff;
-      color: #222;
-      max-width: 520px;
-      width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
-      position: relative;
-      padding: 22px 20px 18px;
-    }
-
-    [data-theme="dark"] .modal {
-      background: #1b1723;
-      color: #eae6f5
-    }
-
-    .modal h2 {
-      margin: 0 0 12px;
-      font-family: var(--heading-font);
-      font-weight: 800;
-      color: var(--text);
-    }
-
-    .modal p {
-      margin: 0 0 12px;
-      line-height: 1.45
-    }
-
-    .modal .links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-
-    .modal .links a {
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 10px;
-      background: var(--playBg);
-      color: var(--playText);
-      font-weight: 800;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      width: 36px;
-      height: 36px;
-      border-radius: 999px;
-      border: 0;
-      background: transparent;
-      color: inherit;
-      cursor: pointer;
-    }
-
-    .modal-close:before {
-      content: "✕";
-      font-size: 18px;
-      line-height: 36px;
-      display: block;
-      text-align: center;
-    }
-
-    @media (prefers-reduced-motion:reduce) {
-
-      .thumb,
-      .thumb .overlay,
-      body {
-        transition: none !important
-      }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2eee4">
+  <meta name="description" content="Konnie Lab — Konstantin’s playable workshop. A little code, a little craft, and small worlds you can actually play. Try Castle Duels in your browser.">
+  <title>Konnie Lab — The playable workshop</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
-
 <body>
-  <button class="pill-btn theme-toggle" id="themeBtn" aria-label="Toggle dark mode">Dark mode</button>
+  <a class="skip-link" href="#playable">Skip to the playable</a>
+  <div class="site-frame">
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Konnie Lab home"><img class="brand-icon" src="assets/favicon.svg" width="42" height="42" alt=""><span>KONNIE—LAB<small>THE PLAYABLE WORKSHOP</small></span></a>
+      <nav aria-label="Main navigation"><a href="#workshop">The process</a><a href="#playable">Play a little</a><a class="contact-link" href="https://t.me/konnie_lab" target="_blank" rel="noopener">Let’s talk <span aria-hidden="true">↗</span></a></nav>
+    </header>
 
-  <h1>Playables by Konnie-lab</h1>
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div><p class="eyebrow"><span class="status-dot"></span> INDEPENDENT MIND. PLAYFUL HANDS.</p><h1 id="page-title">Little worlds.<br><span>Made to be played.</span></h1></div>
+        <div class="intro-note"><p>A little code. A little craft.<br>A spark of something fun.</p><a href="#workshop">Come inside the workshop <span aria-hidden="true">↓</span></a></div>
+      </section>
 
-  <div class="top-actions">
-    <button class="pill-btn" id="aboutBtn" aria-haspopup="dialog" aria-controls="aboutModal">About / Contacts</button>
+      <section class="workshop" id="workshop" aria-label="The playable workshop">
+        <div class="workshop-art" aria-hidden="true">
+          <div class="machine-gear gear-upper"><img src="assets/workshop-layers/gear.webp" alt="" draggable="false"></div>
+          <div class="machine-gear gear-lower"><img src="assets/workshop-layers/gear.webp" alt="" draggable="false"></div>
+          <div class="scene-character sunflower"><img src="assets/workshop-layers/sunflower.webp" alt="" draggable="false"></div>
+          <div class="scene-character sheep"><span class="sheep-shadow"></span><img src="assets/workshop-layers/sheep.webp" alt="" draggable="false"></div>
+          <div class="hologram hologram-cube"><img src="assets/workshop-layers/cube.webp" alt="" draggable="false"></div>
+          <div class="hologram hologram-rig"><img src="assets/workshop-layers/rig.webp" alt="" draggable="false"></div>
+          <img class="scene-star star-one" src="assets/workshop-layers/star.webp" alt="" draggable="false">
+          <img class="scene-star star-two" src="assets/workshop-layers/star.webp" alt="" draggable="false">
+          <img class="scene-star star-three" src="assets/workshop-layers/star.webp" alt="" draggable="false">
+          <img class="belt-arrow arrow-one" src="assets/workshop-layers/arrow.webp" alt="" draggable="false">
+          <img class="belt-arrow arrow-two" src="assets/workshop-layers/arrow.webp" alt="" draggable="false">
+          <img class="belt-arrow arrow-three" src="assets/workshop-layers/arrow.webp" alt="" draggable="false">
+          <img class="belt-arrow arrow-four" src="assets/workshop-layers/arrow.webp" alt="" draggable="false">
+        </div>
+        <div class="workshop-shade" aria-hidden="true"></div>
+        <div class="room-label"><span class="status-dot"></span> THE WORKSHOP <span class="room-number">ROOM 01</span></div>
+        <div class="machine-glow" aria-hidden="true"></div>
+
+        <span class="scene-label scene-label-input" aria-hidden="true">01 / A SPARK</span>
+        <span class="scene-label scene-label-machine" aria-hidden="true">02 / A LITTLE MAGIC</span>
+
+        <div class="phone-dock" id="playable" tabindex="-1">
+          <div class="phone-heading"><span><i class="status-dot"></i> LIVE PLAYABLE</span><button class="close-player" type="button" aria-label="Close expanded player">✕</button></div>
+          <div class="phone-shell">
+            <span class="phone-button phone-button-one" aria-hidden="true"></span><span class="phone-button phone-button-two" aria-hidden="true"></span>
+            <div class="phone-screen">
+              <div class="loading-screen" id="loadingScreen"><img class="loader-mark" src="assets/favicon.svg" width="52" height="52" alt=""><strong>Opening a little world…</strong><span>Castle Duels</span></div>
+              <iframe id="gameFrame" title="Castle Duels — interactive playable demo" src="castle-duels/index.html" allow="autoplay; fullscreen" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" tabindex="0"></iframe>
+              <div class="phone-camera" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="player-controls"><button id="restartBtn" type="button"><span aria-hidden="true">↻</span> Restart</button><span class="control-divider" aria-hidden="true"></span><button id="expandBtn" type="button" aria-expanded="false"><span aria-hidden="true">⛶</span> Expand</button></div>
+          <p class="phone-hint">Go on. Drag the characters together.</p>
+          <p class="player-status" id="playerStatus" role="status"></p>
+        </div>
+
+        <div class="workbench-note"><span class="note-pin" aria-hidden="true"></span><p>Ideas go in.<br><em>Play comes out.</em></p></div>
+        <div class="room-footer"><span>HANDCRAFTED WITH CODE & CURIOSITY</span><button id="motionBtn" type="button" aria-pressed="false"><span aria-hidden="true">Ⅱ</span> Pause ambience</button></div>
+      </section>
+
+      <section class="process-section" aria-labelledby="process-title">
+        <div class="section-heading"><p class="eyebrow">FROM THE WORKBENCH</p><h2 id="process-title">How a little world comes to life.</h2><span class="section-index" aria-hidden="true">01 — 03</span></div>
+        <div class="process-grid">
+          <article class="process-step"><span class="step-number">01</span><div><h3>Find the spark.</h3><p>A simple idea. An inviting world. That one interaction you want to try.</p><span class="step-caption">CONCEPT · ART · FIRST IMPRESSIONS</span></div></article>
+          <article class="process-step"><span class="step-number">02</span><div><h3>Make it feel alive.</h3><p>Bring the pieces together with code, movement and a satisfying response to every touch.</p><span class="step-caption">CODE · ANIMATION · GAME FEEL</span></div></article>
+          <article class="process-step"><span class="step-number">03</span><div><h3>Put it in your hands.</h3><p>Trim the weight. Tune the details. Turn a small moment into something you can play.</p><span class="step-caption">OPTIMIZE · TEST · PLAY</span></div></article>
+        </div>
+      </section>
+
+      <section class="project-section" aria-labelledby="project-title">
+        <div class="project-title"><p class="eyebrow">FRESH FROM THE LAB / 001</p><h2 id="project-title">Castle Duels<span aria-hidden="true">↗</span></h2><p>Small army. Big little battle.</p></div>
+        <div class="project-description"><p>Merge your characters, build your squad and take them into battle. A playable moment, ready to explore right here in the workshop.</p><div class="project-tags"><span>3D + 2D</span><span>MERGE & BATTLE</span><span>INTERACTIVE DEMO</span></div><a class="blue-button" href="#playable">Try the playable <span aria-hidden="true">↗</span></a><a class="standalone-link" href="castle-duels/" target="_blank" rel="noopener">Open in a new tab <span aria-hidden="true">↗</span></a></div>
+      </section>
+
+      <section class="contact-section" id="contact" aria-labelledby="contact-title"><div><p class="eyebrow">THERE’S ALWAYS ROOM FOR A NEW IDEA</p><h2 id="contact-title">Let’s make<br>something <em>playful.</em></h2></div><div class="contact-details"><p>I’m Konstantin.<br>I craft playable ads with attention to visuals, game feel and performance.</p><a href="https://t.me/konnie_lab" target="_blank" rel="noopener">Say hello on Telegram <span aria-hidden="true">↗</span></a><a href="mailto:konnie.feliz@gmail.com">konnie.feliz@gmail.com <span aria-hidden="true">↗</span></a></div></section>
+    </main>
+    <footer class="site-footer"><span>© <span id="year">2026</span> KONNIE LAB</span><span>BUILT WITH CURIOSITY. MADE TO PLAY.</span><a href="https://github.com/konnie-lab" target="_blank" rel="noopener">GITHUB ↗</a></footer>
   </div>
-
-  <!-- Gallery -->
-  <div class="playables">
-
-    <div class="card">
-      <a class="thumb" href="magicArcher/" target="_blank" rel="noopener">
-        <img src="magicArcher/preview.png" alt="Magic Archer" loading="lazy" width="280" height="420">
-        <div class="overlay">
-          <div class="play-pill">PLAY</div>
-        </div>
-      </a>
-      <div class="card-title">Magic Archer</div>
-    </div>
-
-    <div class="card">
-      <a class="thumb" href="adorableGarden/" target="_blank" rel="noopener">
-        <img src="adorableGarden/preview.png" alt="Adorable Garden" loading="lazy" width="280" height="420">
-        <div class="overlay">
-          <div class="play-pill">PLAY</div>
-        </div>
-      </a>
-      <div class="card-title">Adorable Garden</div>
-    </div>
-
-    <div class="card">
-      <a class="thumb" href="idleMinerDesert/" target="_blank" rel="noopener">
-        <img src="idleMinerDesert/preview.png" alt="Idle Miner Desert" loading="lazy" width="280" height="420">
-        <div class="overlay">
-          <div class="play-pill">PLAY</div>
-        </div>
-      </a>
-      <div class="card-title">Idle Miner Desert</div>
-    </div>
-
-    <div class="card">
-      <a class="thumb" href="ageOfCoins/" target="_blank" rel="noopener">
-        <img src="ageOfCoins/preview.png" alt="Age of Coins" loading="lazy" width="280" height="420">
-        <div class="overlay">
-          <div class="play-pill">PLAY</div>
-        </div>
-      </a>
-      <div class="card-title">Age of Coins</div>
-    </div>
-
-        <div class="card">
-      <a class="thumb" href="gardenMakeover/" target="_blank" rel="noopener">
-        <img src="gardenMakeover/preview.png" alt="Garden Makeover" loading="lazy" width="280" height="420">
-        <div class="overlay">
-          <div class="play-pill">PLAY</div>
-        </div>
-      </a>
-      <div class="card-title">Garden Makeover</div>
-    </div>
-
-    <div class="card">
-      <a class="thumb" href="BattleCopy/" target="_blank" rel="noopener">
-        <img src="BattleCopy/preview.png" alt="Merge Battle" loading="lazy" width="280" height="420">
-        <div class="overlay">
-          <div class="play-pill">PLAY</div>
-        </div>
-      </a>
-      <div class="card-title">Merge Battle</div>
-    </div>
-
-          <div class="card">
-    <a class="thumb" href="chickenRoad/" target="_blank" rel="noopener">
-      <img src="chickenRoad/preview.png" alt="Chicken Road" loading="lazy" width="280" height="420">
-      <div class="overlay">
-        <div class="play-pill">PLAY</div>
-      </div>
-    </a>
-    <div class="card-title">Chicken Road</div>
-  </div>
-
-            <div class="card">
-    <a class="thumb" href="grandHustle/" target="_blank" rel="noopener">
-      <img src="grandHustle/preview.png" alt="Grand Hustle" loading="lazy" width="280" height="420">
-      <div class="overlay">
-        <div class="play-pill">PLAY</div>
-      </div>
-    </a>
-    <div class="card-title">Grand Hustle</div>
-  </div>
-
-    <div class="card">
-      <a class="thumb" href="quiiiz/" target="_blank" rel="noopener">
-        <img src="quiiiz/preview.png" alt="IQ Quiz" loading="lazy" width="280" height="420">
-        <div class="overlay">
-          <div class="play-pill">PLAY</div>
-        </div>
-      </a>
-      <div class="card-title">IQ Quiz</div>
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal-backdrop" id="aboutBackdrop" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
-    <div class="modal" id="aboutModal">
-      <button class="modal-close" id="aboutClose" aria-label="Close"></button>
-      <h2 id="aboutTitle">Konnie-lab</h2>
-      <p>
-        Hi, I’m Konstantin. I craft <strong>playable ads</strong> that grab attention,
-        keep players engaged, and deliver smooth gameplay —
-        all while focusing on optimized performance &amp; clean code.
-      </p>
-      <p>
-        Open to <strong>freelance</strong> and <strong>full-time</strong> collaborations.
-        Let’s build something impactful and fun.
-      </p>
-      <div class="links">
-        <a href="http://t.me/konnie_lab" target="_blank" rel="noopener">Telegram</a>
-        <a href="mailto:konnie.feliz@gmail.com">Email</a>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Theme toggle with persistence
-    const root = document.documentElement;
-    const themeBtn = document.getElementById('themeBtn');
-    const saved = localStorage.getItem('konnie_theme');
-    if (saved) root.setAttribute('data-theme', saved);
-    function updateThemeLabel() {
-      themeBtn.textContent = root.getAttribute('data-theme') === 'dark' ? 'Light mode' : 'Dark mode';
-    }
-    updateThemeLabel();
-    themeBtn.addEventListener('click', () => {
-      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      localStorage.setItem('konnie_theme', next);
-      updateThemeLabel();
-    });
-
-    // Global image fallback
-    (function () {
-      const fallbackSrc = '/playables/fallback.png';
-      document.querySelectorAll('.thumb img').forEach(img => {
-        img.addEventListener('error', function onErr() {
-          img.removeEventListener('error', onErr);
-          img.src = fallbackSrc;
-        }, { once: true });
-      });
-    })();
-
-    // Modal open/close (ESC, backdrop click, focus restore)
-    const aboutBtn = document.getElementById('aboutBtn');
-    const backdrop = document.getElementById('aboutBackdrop');
-    const closeBtn = document.getElementById('aboutClose');
-    let lastFocus = null;
-
-    function openModal() {
-      lastFocus = document.activeElement;
-      backdrop.classList.add('show');
-      document.body.classList.add('modal-open');
-      closeBtn.focus({ preventScroll: true });
-    }
-    function closeModal() {
-      backdrop.classList.remove('show');
-      document.body.classList.remove('modal-open');
-      if (lastFocus) lastFocus.focus({ preventScroll: true });
-    }
-
-    aboutBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeModal(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-  </script>
 </body>
-
 </html>

@@ -1,0 +1,24 @@
+{
+  "tool": "Built-in image_gen.imagegen",
+  "reference": "C:/JS/Konnie-Lab/konnie-lab-workshop.png",
+  "background": {
+    "transparent_background": false,
+    "prompt": "Edit the supplied workshop image for use as a layered website background. Keep EXACTLY the same 1536x1024 landscape composition, camera, conveyor geometry, machine, monitors, tabletop, lighting, materials, brass KONNIE LAB plaque and all furniture. ONLY remove the loose objects standing on the LEFT incoming conveyor belt: sunflower character, floating yellow stars, green play button, sheep, blue wireframe cube and stick figure. Reconstruct clean EMPTY metal conveyor belt under them with matching perspective and lighting. Also remove ALL luminous arrow/chevron decals along BOTH incoming and outgoing conveyor sides, reconstruct clean dark metal panels underneath. Keep the glass chamber contents, monitors and phone screen artwork unchanged. No new objects, no other redesign. Empty conveyor for later animated character overlays."
+  },
+  "sunflower": {
+    "transparent_background": true,
+    "prompt": "Create a single isolated sprite asset based on the smiling sunflower standing on the left conveyor in the supplied reference. Same polished miniature 3D clay toy look, golden round friendly face, layered yellow petals, short green stem, two expressive green leaf arms held to the sides, two little leaf feet. Full body only, centered with generous transparent padding, no other objects. Camera three-quarter frontal slightly looking down, matching workshop conveyor perspective. Warm upper right rim light and cool blue fill, soft material. No ground plane, no cast floor shadow, no letters, no border. GENUINELY TRANSPARENT RGBA background. One sunflower only, 1024x1024 square sprite suitable for gentle rocking animation."
+  },
+  "sheep": {
+    "transparent_background": true,
+    "prompt": "Create one isolated full-body sheep sprite based exactly on the small cream wool sheep standing on the left conveyor in this reference. Polished miniature 3D clay toy style, chunky faceted cream wool, charcoal brown face, round bright eyes, tiny ears, four short brown legs. Three-quarter profile facing RIGHT, camera slightly above matching conveyor scene, warm gold light upper right and blue fill left. All feet visible. Neutral standing pose ready for occasional jump animation. One sheep centered, generous transparent margin. No ground, no cast floor shadow, no text, no other objects. GENUINELY TRANSPARENT RGBA background, square 1024x1024."
+  },
+  "star": {
+    "transparent_background": true,
+    "prompt": "Generate ONE small collectible five-point gold star as a standalone 3D game sprite matching the luminous yellow stars on the left conveyor in the reference. Rounded beveled chunky toy shape, rich golden sides, warm yellow front, soft amber edge glow with transparent falloff, slight three-quarter perspective. Centered isolated star, generous padding. Five points, NO face, NO sparkle or starburst icon, NO extra stars, NO backdrop, NO ground, NO text. True transparent RGBA background. Square 1024x1024."
+  },
+  "arrow": {
+    "transparent_background": true,
+    "prompt": "Generate ONE isolated right-pointing conveyor direction chevron sprite matching the cyan illuminated chevron embedded in the metal side of the reference conveyor. A clean thick > shape with gently beveled frosted glass material, soft luminous mint-cyan core and restrained glow with true transparent falloff. Front facing camera, symmetric arms, compact proportions, industrial miniature 3D material, not a flat line icon. ONLY ONE chevron, NO backplate, NO metal panel, NO border, NO letters, NO other objects. Centered square 1024x1024 with generous transparent padding. Genuine transparent RGBA background for overlay on dark metal."
+  }
+}
