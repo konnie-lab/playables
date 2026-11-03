@@ -93,7 +93,7 @@ restart.addEventListener('click', () => {
   loading.hidden = false;
   restart.disabled = true;
   status.textContent = 'Restarting Castle Duels…';
-  frame.src = 'castle-duels/index.html';
+  frame.src = frame.src;
   waitForGame();
 });
 
