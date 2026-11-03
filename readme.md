@@ -29,3 +29,9 @@ From `C:\JS\Konnie-Lab`, run `npm run check -- clients/myGames/castle-duels`. Af
 ## Local preview
 
 Run `node preview.mjs` and open http://127.0.0.1:4178. No install or build step is needed for the portfolio. Keep relative asset paths so GitHub Pages works under `/playables/`.
+
+## Optimize workshop images
+
+Run `npm ci` once, then `npm run optimize:images`. Sharp regenerates the nine active raster assets from their original PNGs, preserving full-quality alpha and choosing dimensions for approximately 2x display resolution. Original PNGs and unused version-one assets stay available for future edits but are not loaded by the current page. The site remains buildless; Sharp is a development-only dependency and webpack is not required.
+
+The active workshop WebPs total **397,032 bytes**, down from **661,798 bytes** (40% less). This measures workshop images only, excluding the playable, fonts and page code. The existing 4.7 MB standalone playable already uses WebP textures and compressed models; it is unchanged by this optimization.

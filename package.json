@@ -1,0 +1,11 @@
+{
+  "name": "konnie-lab-portfolio",
+  "private": true,
+  "scripts": {
+    "preview": "node preview.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs"
+  },
+  "devDependencies": {
+    "sharp": "0.34.5"
+  }
+}
