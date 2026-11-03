@@ -20,6 +20,20 @@ document.getElementById('year').textContent = new Date().getFullYear();
 const workshop = document.getElementById('workshop');
 const artwork = document.querySelector('.workshop-art');
 
+// Small reusable pools; staggered CSS animations also honor the ambience pause.
+document.querySelectorAll('.spell-fx').forEach(emitter => {
+  for (let index = 0; index < 12; index++) {
+    const particle = document.createElement('i');
+    const burst = index >= 6;
+    const step = index % 6;
+    particle.className = burst ? 'spell-burst' : 'spell-trail';
+    particle.style.setProperty('--offset', `${step * (burst ? .045 : .14)}s`);
+    particle.style.setProperty('--dx', `${burst ? (step - 2.5) * 210 : -350 - step * 65}%`);
+    particle.style.setProperty('--dy', `${burst ? -430 - (step % 3) * 160 : 100 + step * 55}%`);
+    emitter.append(particle);
+  }
+});
+
 function layoutWorkshop() {
   const width = workshop.clientWidth;
   const height = workshop.clientHeight;

@@ -15,12 +15,13 @@ const assets = [
   ['castle-workshop/spell', 256, 84],
   ['workshop-layers/gear', 192, 86],
   ['workshop-layers/arrow', 144, 86],
+  ['castle-workshop/summon', 224, 86, 'jpg'],
 ];
 
 let beforeTotal = 0;
 let afterTotal = 0;
-for (const [name, width, quality] of assets) {
-  const source = fileURLToPath(new URL(`${name}.png`, root));
+for (const [name, width, quality, extension = 'png'] of assets) {
+  const source = fileURLToPath(new URL(`${name}.${extension}`, root));
   const destination = new URL(`${name}.webp`, root);
   const before = await stat(destination).then(s => s.size).catch(error => {
     if (error.code === 'ENOENT') return 0;

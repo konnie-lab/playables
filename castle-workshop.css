@@ -10,9 +10,9 @@
   width: 14%;
   aspect-ratio: 1;
 }
-.conveyor-orange { transform: translate(8%, -9%); }
+.conveyor-orange { transform: translate(17%, -11%); }
 .conveyor-blue { transform: translate(100%, -28%); }
-.conveyor-bear { transform: translate(192%, -40%); }
+.conveyor-bear { transform: translate(183%, -38%); }
 .character-figure {
   position: relative;
   display: block;
@@ -43,6 +43,7 @@
   animation: spell-charge 6.5s ease-in-out infinite;
 }
 .spell-warm { filter: hue-rotate(-145deg) saturate(1.2); }
+.spell-orb > img { display: block; width: 100%; height: auto; }
 .conveyor-blue .spell-orb { animation-delay: -1.9s; }
 
 .chamber-content {
@@ -57,7 +58,14 @@
 }
 .chamber-content img { position: absolute; object-fit: contain; animation: chamber-float 9s ease-in-out infinite; animation-delay: var(--float-delay, 0s); }
 .chamber-rider { left: 1%; bottom: 10%; width: 51%; filter: saturate(.88) brightness(.94); }
-.chamber-mage-upgraded { right: 2%; bottom: 16%; width: 39%; --float-delay: -3s; filter: saturate(.88) brightness(.94); }
+.chamber-mage-upgraded { right: 2%; bottom: 27%; width: 39%; --float-delay: -3s; filter: saturate(.88) brightness(.94); }
+.chamber-summon {
+  position: absolute; left: 47%; bottom: 4%; width: 42%; aspect-ratio: 3.1;
+  overflow: hidden; border: 2px solid #914327; border-radius: 9px;
+  box-shadow: 0 3px 0 #65351c, 0 5px 8px #28cfcc25;
+  transform: rotate(-5deg); background: #ffc525;
+}
+.chamber-summon img { position: static; display: block; width: 100%; height: 100%; object-fit: fill; animation: none; }
 .chamber-vortex { position: absolute; left: 44%; top: 4%; width: 32%; aspect-ratio: 1; animation: spell-charge 7s ease-in-out infinite; animation-delay: -2s; }
 .chamber-vortex img { inset: 0; width: 100%; animation: none; }
 .vortex-ring { position: absolute; inset: 22% 4%; border: 1px solid #a9faffaa; border-radius: 50%; box-shadow: 0 0 6px #4defff80; transform: rotate(-28deg); }
@@ -141,9 +149,38 @@
   10% { opacity: .65; transform: translate(20%, -100%) scale(1); }
   42% { opacity: 0; transform: translate(-50%, -550%) scale(.25); }
 }
+/* Short fading trails and occasional gravity-like bursts, inspired by TrailFX
+   and GeyserFX3D. A fixed pool of CSS particles needs no render loop. */
+.spell-fx { position: absolute; inset: 18%; pointer-events: none; --fx-phase: -2s; }
+.conveyor-blue .spell-fx { --fx-phase: -6s; }
+.chamber-vortex .spell-fx { --fx-phase: -9s; }
+.spell-fx i {
+  position: absolute; left: 50%; top: 52%; width: 6%; aspect-ratio: 1;
+  opacity: 0; background: #d1ffff; border-radius: 50%;
+  animation-delay: calc(var(--fx-phase) + var(--offset));
+}
+.spell-fx .spell-trail { animation-name: spell-trail; animation-duration: 3.8s; animation-timing-function: ease-out; animation-iteration-count: infinite; }
+.spell-fx .spell-burst {
+  width: 8%; background: #eaffd8;
+  clip-path: polygon(50% 0, 61% 37%, 100% 50%, 61% 63%, 50% 100%, 39% 63%, 0 50%, 39% 37%);
+  animation-name: spell-burst; animation-duration: 12s; animation-timing-function: linear; animation-iteration-count: infinite;
+}
+@keyframes spell-trail {
+  0% { opacity: 0; transform: translate(0, 0) scale(.8); }
+  5% { opacity: .65; }
+  27% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(.2); }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(.2); }
+}
+@keyframes spell-burst {
+  0%, 70% { opacity: 0; transform: translate(0, 0) scale(.3); }
+  72% { opacity: .85; transform: translate(0, -50%) scale(1); }
+  77% { opacity: .75; transform: translate(calc(var(--dx) * .55), var(--dy)) rotate(70deg) scale(.85); }
+  84% { opacity: 0; transform: translate(var(--dx), 150%) rotate(150deg) scale(.15); }
+  100% { opacity: 0; }
+}
 .ambience-paused .workshop-art *,
 .workshop-offscreen .workshop-art * { animation-play-state: paused; }
 
 @media(prefers-reduced-motion:reduce) {
-  .chamber-sparks { display: none; }
+  .chamber-sparks, .spell-fx { display: none; }
 }
