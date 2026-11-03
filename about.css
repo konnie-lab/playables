@@ -1,0 +1,57 @@
+.about-page nav [aria-current="page"] { border-bottom: 1px solid var(--orange); padding-bottom: 5px; }
+.about-intro { padding: 65px 7% 75px; display: grid; grid-template-columns: 1.7fr 1fr; align-items: center; gap: 8%; }
+.about-intro .status-dot { background: var(--orange); }
+.about-intro h1 { font-size: clamp(44px, 5.3vw, 80px); }
+.about-role { margin: 24px 0 20px; font-size: 13px; font-weight: 700; line-height: 1.7; }
+.about-lead { max-width: 590px; color: #617476; font-size: 16px; line-height: 1.85; margin-bottom: 15px; }
+.cv-actions { margin-top: 28px; display: flex; align-items: center; flex-wrap: wrap; gap: 16px; }
+.cv-format { font-size: 11px; color: var(--muted); }
+.portrait-note { position: relative; margin: 0; padding: 20px 20px 26px; background: #f5e8c7; transform: rotate(3deg); box-shadow: 0 7px 16px #58452622; }
+.portrait-note::before { content: ''; position: absolute; width: 80px; height: 30px; background: #d3b97c88; left: calc(50% - 40px); top: -13px; transform: rotate(-8deg); }
+.portrait-note img { display: block; width: 100%; height: auto; border-radius: 50%; }
+.portrait-note figcaption { margin-top: 23px; font-family: Georgia, serif; font-size: clamp(20px, 2vw, 29px); line-height: 1.35; }
+.portrait-note em { color: #bd6338; }
+.cv-experience, .cv-skills, .cv-background { padding: 48px 7%; border-top: 1px solid var(--line); }
+.cv-section-heading { margin-bottom: 36px; }
+.cv-section-heading h2, .cv-background h2 { font: 500 34px/1.25 var(--heading); letter-spacing: -1px; margin-top: 10px; }
+.cv-job { display: grid; grid-template-columns: 1fr 2fr; gap: 50px; padding: 30px 0; border-top: 1px solid var(--line); }
+.cv-job-meta h3 { font: 600 22px/1.3 var(--heading); margin: 9px 0; }
+.cv-date { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: #af623f; }
+.cv-job-meta > p:last-child { color: var(--muted); font-size: 13px; line-height: 1.8; }
+.cv-job-content { color: #617476; font-size: 14px; line-height: 1.9; }
+.cv-job-content h4 { color: var(--ink); font-size: 13px; margin: 0 0 12px; }
+.cv-job-content ul { padding-left: 18px; margin: 0 0 24px; }
+.cv-job-content ul:last-child { margin-bottom: 0; }
+.cv-job-content li { margin-bottom: 10px; padding-left: 5px; }
+.cv-job-content li::marker { color: #bd7950; }
+.cv-skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.cv-skills-grid > div:not(:last-child) { border-right: 1px solid var(--line); padding-right: 30px; }
+.cv-skills-grid h3 { margin: 16px 0 12px; font: 600 20px var(--heading); }
+.cv-skills-grid p { font-size: 14px; line-height: 1.9; color: #617476; }
+.cv-background { display: grid; grid-template-columns: 1fr 2fr; gap: 50px; }
+.cv-background h3 { font: 600 16px var(--heading); margin-bottom: 14px; }
+.cv-background p { font-size: 14px; line-height: 1.9; color: #617476; margin-bottom: 22px; }
+.cv-background p:last-child { margin-bottom: 0; }
+.cv-background strong { font-weight: 500; color: var(--ink); }
+@media (max-width: 900px) {
+  .about-intro { padding: 45px 6%; gap: 6%; }
+  .about-intro h1 { font-size: 48px; letter-spacing: -2px; }
+  .about-lead { font-size: 14px; }
+  .portrait-note { padding: 14px 14px 20px; }
+  .cv-job, .cv-background { gap: 28px; }
+}
+@media (max-width: 720px) {
+  .about-intro { grid-template-columns: 1fr; gap: 40px; padding: 36px 6% 45px; }
+  .about-intro h1 { font-size: clamp(38px, 9vw, 56px); }
+  .about-role { margin: 20px 0 16px; font-size: 12px; }
+  .portrait-note { width: 240px; max-width: 90%; justify-self: center; }
+  .portrait-note figcaption { font-size: 23px; margin-top: 18px; }
+  .cv-experience, .cv-skills, .cv-background { padding: 35px 6%; }
+  .cv-section-heading h2, .cv-background h2 { font-size: 28px; }
+  .cv-section-heading { margin-bottom: 25px; }
+  .cv-job, .cv-background { grid-template-columns: 1fr; gap: 22px; }
+  .cv-job { padding: 25px 0; }
+  .cv-job-meta h3 { font-size: 21px; }
+  .cv-skills-grid { grid-template-columns: 1fr; gap: 24px; }
+  .cv-skills-grid > div:not(:last-child) { border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 24px; }
+}

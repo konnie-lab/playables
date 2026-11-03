@@ -1,5 +1,5 @@
 // Canvas adaptation of Konnie-Lab's pixi-blank/src/fx/SparkBurstFX.js.
-// Same star texture, 46-particle burst, drag, gravity and cubic fade.
+// Original star texture, 46 particles, drag, gravity and cubic fade.
 // No renderer loop runs between bursts or while ambience is paused.
 class SparkBurstFX {
   constructor(host, texture, delay, interval = 8000) {
@@ -42,11 +42,12 @@ class SparkBurstFX {
       this.particles.push({
         x: 120, y: 120,
         vx: Math.cos(random(0, Math.PI * 2)) * random(0, 220) * .4,
-        vy: -random(220, 380) * .4,
+        vy: -random(220, 380) * .28,
         size: this.texture.naturalWidth * random(.06, .14) * .6,
         rotation: random(0, Math.PI * 2),
         spin: random(-2.4, 2.4),
-        age: -index * .04 / 46,
+        // Keep new stars emerging at the orb's centre while the plume rises.
+        age: -index * .32 / 46,
         lifetime: random(.9, 1.38),
       });
     }
