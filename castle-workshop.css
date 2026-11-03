@@ -60,7 +60,7 @@
 .chamber-rider { left: 1%; bottom: 10%; width: 51%; filter: saturate(.88) brightness(.94); }
 .chamber-mage-upgraded { right: 2%; bottom: 27%; width: 39%; --float-delay: -3s; filter: saturate(.88) brightness(.94); }
 .chamber-summon {
-  position: absolute; left: 47%; bottom: 4%; width: 42%; aspect-ratio: 3.1;
+  position: absolute; left: 51%; bottom: 6%; width: 34%; aspect-ratio: 3.1;
   overflow: hidden; border: 2px solid #914327; border-radius: 9px;
   box-shadow: 0 3px 0 #65351c, 0 5px 8px #28cfcc25;
   transform: rotate(-5deg); background: #ffc525;
@@ -155,26 +155,26 @@
 .conveyor-blue .spell-fx { --fx-phase: -6s; }
 .chamber-vortex .spell-fx { --fx-phase: -9s; }
 .spell-fx i {
-  position: absolute; left: 50%; top: 52%; width: 6%; aspect-ratio: 1;
+  position: absolute; left: 50%; top: 52%; width: 7.5%; aspect-ratio: 1;
   opacity: 0; background: #d1ffff; border-radius: 50%;
   animation-delay: calc(var(--fx-phase) + var(--offset));
 }
 .spell-fx .spell-trail { animation-name: spell-trail; animation-duration: 3.8s; animation-timing-function: ease-out; animation-iteration-count: infinite; }
 .spell-fx .spell-burst {
-  width: 8%; background: #eaffd8;
+  width: 10%; background: #f4ffe8;
   clip-path: polygon(50% 0, 61% 37%, 100% 50%, 61% 63%, 50% 100%, 39% 63%, 0 50%, 39% 37%);
   animation-name: spell-burst; animation-duration: 12s; animation-timing-function: linear; animation-iteration-count: infinite;
 }
 @keyframes spell-trail {
   0% { opacity: 0; transform: translate(0, 0) scale(.8); }
-  5% { opacity: .65; }
+  5% { opacity: .9; }
   27% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(.2); }
   100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(.2); }
 }
 @keyframes spell-burst {
   0%, 70% { opacity: 0; transform: translate(0, 0) scale(.3); }
-  72% { opacity: .85; transform: translate(0, -50%) scale(1); }
-  77% { opacity: .75; transform: translate(calc(var(--dx) * .55), var(--dy)) rotate(70deg) scale(.85); }
+  72% { opacity: 1; transform: translate(0, -50%) scale(1); }
+  77% { opacity: .95; transform: translate(calc(var(--dx) * .55), var(--dy)) rotate(70deg) scale(.9); }
   84% { opacity: 0; transform: translate(var(--dx), 150%) rotate(150deg) scale(.15); }
   100% { opacity: 0; }
 }

@@ -26,6 +26,8 @@ These are local Git versions; no publication is implied. Use a separate checkout
 
 From `C:\JS\Konnie-Lab`, run `npm run check -- clients/myGames/castle-duels`. After checks pass, copy that project's `dist/castle-duels_default.html` to this repository's `castle-duels/index.html`. The source project enables gzip for models and quality-90 WebP compression for images, preserving the HP mask in its original format.
 
+The current export includes the Fight camera fix: event predicates respond only in their owning active state, and the second battle no longer starts a duplicate camera transition. Both Fight clicks are regression-checked in development and production alongside the complete gameplay sequence.
+
 ## Local preview
 
 Run `node preview.mjs` and open http://127.0.0.1:4178. No install or build step is needed for the portfolio. Keep relative asset paths so GitHub Pages works under `/playables/`.
