@@ -1,0 +1,2 @@
+# Preserve PDF byte offsets when checking out on Windows.
+assets/cv/*.pdf -text
