@@ -7,7 +7,8 @@ The home page presents a workshop scene and a live Castle Duels demo inside a re
 ## Saved versions
 
 - `workshop-v1` / commit `76eef5b`: approved original workshop with sunflower, sheep, holograms, brighter arrows and rotating gears. Preserved on `main`.
-- `experiment/castle-workshop`: Castle Duels themed workshop. Mages and the bear travel along the conveyor, figures float in the glass chamber, spell orbs pulse, and painted screens show the actual game's arena.
+- `workshop-castle-v1` / commit `226fb76`: first Castle Duels themed workshop, with characters travelling along the conveyor.
+- `experiment/castle-workshop`: current Castle Duels workshop. Characters stand on the belt with subtle idle motion. Sparse chamber sparks rise and fade, inspired by the supplied SparkleFX3D effect, implemented in CSS. Expanded play uses the available viewport height. Updated personal portfolio copy includes a compact credibility section.
 
 These are local Git versions; no publication is implied. Use a separate checkout/worktree of `workshop-v1` to compare without replacing ongoing edits.
 

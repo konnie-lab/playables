@@ -137,3 +137,47 @@ body.player-expanded{overflow:hidden}.phone-dock.is-expanded{position:fixed;inse
 @media(prefers-reduced-motion:reduce) {
   .scene-star, .belt-arrow { opacity: 1; }
 }
+
+/* Copy additions share the existing type scale, margins and section rhythm. */
+.intro-note strong { font-weight: 600; }
+.project-description > p + p { margin-top: 12px; }
+.credibility-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 65px;
+  padding: 36px 5%;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.credibility-section h2 {
+  margin-top: 9px;
+  font-family: var(--heading);
+  font-size: 29px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -1px;
+}
+.credibility-section > p { max-width: 480px; font-size: 14px; line-height: 1.8; color: #617476; }
+.contact-details p { max-width: 440px; margin-bottom: 18px; }
+
+/* Use the available viewport height rather than the old 380px width cap. */
+.phone-dock.is-expanded { padding: 10px 12px; }
+.is-expanded .phone-heading {
+  width: min(calc((100dvh - 102px) * 390 / 740), calc(100vw - 24px));
+  margin-bottom: 6px;
+}
+.is-expanded .close-player { width: 26px; height: 26px; font-size: 13px; }
+.is-expanded .phone-shell {
+  width: min(calc((100dvh - 102px) * 390 / 740), calc(100vw - 24px));
+}
+.is-expanded .player-controls { margin-top: 6px; }
+.is-expanded .phone-hint { font-size: 10px; }
+@media(max-width:1050px) { .credibility-section { gap: 35px; } }
+@media(max-width:720px) {
+  .intro-note p { flex: 1; }
+  .intro-note a { flex: 0 0 110px; }
+  .credibility-section { grid-template-columns: 1fr; padding: 30px 6%; gap: 16px; }
+  .credibility-section h2 { font-size: 25px; }
+  .credibility-section > p { font-size: 13px; }
+}
