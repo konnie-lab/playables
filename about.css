@@ -1,4 +1,8 @@
 .about-page nav [aria-current="page"] { border-bottom: 1px solid var(--orange); padding-bottom: 5px; }
+.header-actions { display: flex; align-items: center; gap: 10px; }
+.header-home { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; flex: none; border: 1px solid #8caaa9; border-radius: 50%; }
+.header-home:hover { border-color: var(--orange); }
+.header-home:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 .about-back { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; margin: 18px 7% 0; font-size: 13px; font-weight: 600; }
 .about-back:hover { color: var(--orange); }
 .about-back:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
@@ -65,4 +69,12 @@
   .cv-job-meta h3 { font-size: 21px; }
   .cv-skills-grid { grid-template-columns: 1fr; gap: 24px; }
   .cv-skills-grid > div:not(:last-child) { border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 24px; }
+}
+@media (max-width: 420px) {
+  .about-page .site-header { gap: 8px; margin-inline: 4%; }
+  .about-page .brand { font-size: 14px; gap: 7px; }
+  .about-page .brand-icon { width: 28px; height: 28px; }
+  .about-page .brand small { font-size: 4.5px; letter-spacing: .8px; }
+  .header-actions { gap: 8px; }
+  .about-page .contact-link { gap: 8px; padding-inline: 10px; white-space: nowrap; }
 }
