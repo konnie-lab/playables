@@ -20,19 +20,20 @@ document.getElementById('year').textContent = new Date().getFullYear();
 const workshop = document.getElementById('workshop');
 const artwork = document.querySelector('.workshop-art');
 
-// Small reusable pools; staggered CSS animations also honor the ambience pause.
-document.querySelectorAll('.spell-fx').forEach(emitter => {
-  for (let index = 0; index < 12; index++) {
-    const particle = document.createElement('i');
-    const burst = index >= 6;
-    const step = index % 6;
-    particle.className = burst ? 'spell-burst' : 'spell-trail';
-    particle.style.setProperty('--offset', `${step * (burst ? .045 : .14)}s`);
-    particle.style.setProperty('--dx', `${burst ? (step - 2.5) * 210 : -350 - step * 65}%`);
-    particle.style.setProperty('--dy', `${burst ? -430 - (step % 3) * 160 : 100 + step * 55}%`);
-    emitter.append(particle);
-  }
-});
+const sparkTexture = new Image();
+const sparkBursts = [...document.querySelectorAll('.spell-fx')]
+  .map((host, index) => new SparkBurstFX(host, sparkTexture, 1400 + index * 2400));
+sparkTexture.addEventListener('load', updateWorkshopEffects);
+sparkTexture.src = 'assets/castle-workshop/star_fx_yellow.webp';
+
+function updateWorkshopEffects() {
+  workshop.classList.toggle('workshop-hidden', document.hidden);
+  const running = sparkTexture.complete && sparkTexture.naturalWidth > 0 &&
+    !document.hidden && !reducedMotion.matches &&
+    !document.body.classList.contains('ambience-paused') &&
+    !workshop.classList.contains('workshop-offscreen');
+  sparkBursts.forEach(effect => effect.setRunning(running));
+}
 
 function layoutWorkshop() {
   const width = workshop.clientWidth;
@@ -51,6 +52,7 @@ new ResizeObserver(layoutWorkshop).observe(workshop);
 layoutWorkshop();
 new IntersectionObserver(entries => {
   workshop.classList.toggle('workshop-offscreen', !entries[0].isIntersecting);
+  updateWorkshopEffects();
 }).observe(workshop);
 
 function updateGamePause() {
@@ -143,6 +145,7 @@ document.addEventListener('keydown', onPlayerKey);
 function setAmbiencePaused(paused) {
   document.body.classList.toggle('ambience-paused', paused);
   motion.setAttribute('aria-pressed', String(paused));
+  updateWorkshopEffects();
   motion.innerHTML = paused ? '<span aria-hidden="true">▷</span> Resume ambience' : '<span aria-hidden="true">Ⅱ</span> Pause ambience';
 }
 
@@ -156,6 +159,7 @@ applyMotionPreference();
 motion.addEventListener('click', () => setAmbiencePaused(motion.getAttribute('aria-pressed') !== 'true'));
 reducedMotion.addEventListener('change', applyMotionPreference);
 document.addEventListener('visibilitychange', updateGamePause);
+document.addEventListener('visibilitychange', updateWorkshopEffects);
 new IntersectionObserver(entries => {
   playerVisible = entries[0].isIntersecting;
   updateGamePause();
