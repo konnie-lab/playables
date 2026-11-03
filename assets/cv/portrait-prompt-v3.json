@@ -1,0 +1,8 @@
+{
+  "tool": "Built-in image_gen",
+  "prompt": "Precise localized edit. IMAGE 1 is the edit target and the approved portrait: KEEP ITS FACE EXACTLY AS IS. IMAGE 2 is ONLY a mug reference. Replace only the mug in image 1 with the handcrafted turquoise glazed ceramic mug from image 2: same embossed capybara and flowers, ceramic surface texture, warm brown/brass colored rim and curved handle. Keep image 1's person's face, eyes, smile, facial proportions, hair, head outline and skin completely unchanged. Do not reinterpret, regenerate, retouch or beautify the face. Do not use the face from image 2. Keep image 1's entire composition, shirt, hand, spoon, blue wizard at mug rim, orange wizard on shoulder, bear, workshop background and lighting unchanged. Preserve exact image 1 framing and size. The only visible modification should be the replacement of the mug. Photorealistic portrait with small stylized game characters. No text, no watermark.",
+  "referenceRoles": [
+    "v1 approved face and composition",
+    "v2 mug only"
+  ]
+}

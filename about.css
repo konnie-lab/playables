@@ -1,14 +1,19 @@
 .about-page nav [aria-current="page"] { border-bottom: 1px solid var(--orange); padding-bottom: 5px; }
-.about-intro { padding: 65px 7% 75px; display: grid; grid-template-columns: 1.7fr 1fr; align-items: center; gap: 8%; }
+.about-intro { padding: 65px 7% 75px; display: grid; grid-template-columns: 1.3fr 1fr; align-items: center; gap: 6%; }
 .about-intro .status-dot { background: var(--orange); }
 .about-intro h1 { font-size: clamp(44px, 5.3vw, 80px); }
 .about-role { margin: 24px 0 20px; font-size: 13px; font-weight: 700; line-height: 1.7; }
 .about-lead { max-width: 590px; color: #617476; font-size: 16px; line-height: 1.85; margin-bottom: 15px; }
+.about-signoff { margin-top: 25px; font: 23px/1.5 Georgia, serif; }
+.about-signoff em { color: #bd6338; }
+.cv-download { display: flex; justify-content: space-between; align-items: center; gap: 28px; margin: 0 7% 45px; padding: 28px 0; border-top: 1px solid var(--line); }
+.cv-download > div > p:last-child { margin-top: 7px; font-size: 14px; line-height: 1.7; color: #617476; }
+.cv-download .cv-actions { margin-top: 0; }
 .cv-actions { margin-top: 28px; display: flex; align-items: center; flex-wrap: wrap; gap: 16px; }
 .cv-format { font-size: 11px; color: var(--muted); }
 .portrait-note { position: relative; margin: 0; padding: 20px 20px 26px; background: #f5e8c7; transform: rotate(3deg); box-shadow: 0 7px 16px #58452622; }
 .portrait-note::before { content: ''; position: absolute; width: 80px; height: 30px; background: #d3b97c88; left: calc(50% - 40px); top: -13px; transform: rotate(-8deg); }
-.portrait-note img { display: block; width: 100%; height: auto; border-radius: 50%; }
+.portrait-note img { display: block; width: 100%; height: auto; border-radius: 3px; }
 .portrait-note figcaption { margin-top: 23px; font-family: Georgia, serif; font-size: clamp(20px, 2vw, 29px); line-height: 1.35; }
 .portrait-note em { color: #bd6338; }
 .cv-experience, .cv-skills, .cv-background { padding: 48px 7%; border-top: 1px solid var(--line); }
@@ -41,16 +46,18 @@
   .cv-job, .cv-background { gap: 28px; }
 }
 @media (max-width: 720px) {
-  .about-intro { grid-template-columns: 1fr; gap: 40px; padding: 36px 6% 45px; }
+  .about-intro { grid-template-columns: minmax(0, 1fr); gap: 40px; padding: 36px 6% 45px; }
   .about-intro h1 { font-size: clamp(38px, 9vw, 56px); }
   .about-role { margin: 20px 0 16px; font-size: 12px; }
-  .portrait-note { width: 240px; max-width: 90%; justify-self: center; }
+  .portrait-note { width: 96%; max-width: 360px; justify-self: center; }
   .portrait-note figcaption { font-size: 23px; margin-top: 18px; }
   .cv-experience, .cv-skills, .cv-background { padding: 35px 6%; }
   .cv-section-heading h2, .cv-background h2 { font-size: 28px; }
   .cv-section-heading { margin-bottom: 25px; }
   .cv-job, .cv-background { grid-template-columns: 1fr; gap: 22px; }
   .cv-job { padding: 25px 0; }
+  .cv-download { margin: 0 6% 30px; flex-direction: column; align-items: flex-start; gap: 18px; }
+  .about-signoff { font-size: 21px; }
   .cv-job-meta h3 { font-size: 21px; }
   .cv-skills-grid { grid-template-columns: 1fr; gap: 24px; }
   .cv-skills-grid > div:not(:last-child) { border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 24px; }

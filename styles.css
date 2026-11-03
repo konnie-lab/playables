@@ -178,6 +178,8 @@ body.player-expanded{overflow:hidden}.phone-dock.is-expanded{position:fixed;inse
 .player-controls button:disabled { opacity: .5; cursor: wait; }
 .sound-cross, .is-muted .sound-waves { display: none; }
 .is-muted .sound-cross { display: block; }
+.intro-about { display: inline-flex; align-items: center; gap: 24px; margin-top: 23px; padding: 10px 0; border-bottom: 1px solid #9fac9f; font-size: 14px; font-weight: 600; }
+.intro-about:hover { color: var(--orange); border-color: var(--orange); }
 .is-expanded .phone-hint { font-size: 10px; }
 @media(max-width:1050px) { .credibility-section { gap: 35px; } }
 @media(max-width:720px) {
