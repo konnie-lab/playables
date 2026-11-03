@@ -10,9 +10,9 @@
   width: 14%;
   aspect-ratio: 1;
 }
-.conveyor-orange { transform: translate(28%, -13%); }
+.conveyor-orange { transform: translate(8%, -9%); }
 .conveyor-blue { transform: translate(100%, -28%); }
-.conveyor-bear { transform: translate(174%, -36%); }
+.conveyor-bear { transform: translate(192%, -40%); }
 .character-figure {
   position: relative;
   display: block;
@@ -47,30 +47,40 @@
 
 .chamber-content {
   position: absolute;
-  left: 47.6%;
-  top: 7.8%;
-  width: 17.3%;
-  height: 20.4%;
+  left: 49%;
+  top: 10.2%;
+  width: 14.7%;
+  height: 14%;
   overflow: hidden;
   border-radius: 13% 13% 24% 24%;
   isolation: isolate;
 }
 .chamber-content img { position: absolute; object-fit: contain; animation: chamber-float 9s ease-in-out infinite; animation-delay: var(--float-delay, 0s); }
-.chamber-rider { left: -3%; bottom: -1%; width: 60%; }
-.chamber-mage-upgraded { right: -4%; bottom: 2%; width: 52%; --float-delay: -3s; }
-.chamber-vortex { position: absolute; left: 33%; top: 25%; width: 35%; aspect-ratio: 1; animation: spell-charge 7s ease-in-out infinite; animation-delay: -2s; }
+.chamber-rider { left: 1%; bottom: 10%; width: 51%; filter: saturate(.88) brightness(.94); }
+.chamber-mage-upgraded { right: 2%; bottom: 16%; width: 39%; --float-delay: -3s; filter: saturate(.88) brightness(.94); }
+.chamber-vortex { position: absolute; left: 44%; top: 4%; width: 32%; aspect-ratio: 1; animation: spell-charge 7s ease-in-out infinite; animation-delay: -2s; }
 .chamber-vortex img { inset: 0; width: 100%; animation: none; }
 .vortex-ring { position: absolute; inset: 22% 4%; border: 1px solid #a9faffaa; border-radius: 50%; box-shadow: 0 0 6px #4defff80; transform: rotate(-28deg); }
 .vortex-ring-gold { inset: 6% 25%; border-color: #ffde8799; box-shadow: 0 0 5px #ffd57460; transform: rotate(32deg); }
+/* The front arc passes in front of the figures, placing them inside the glass. */
+.chamber-content::before {
+  content: '';
+  position: absolute;
+  left: 3%; top: 64%; width: 94%; height: 29%;
+  border-bottom: 2px solid #9fffff80;
+  border-radius: 50%;
+  filter: drop-shadow(0 2px 3px #51f5ed80);
+  z-index: 2;
+  pointer-events: none;
+}
 .chamber-content::after {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(100deg, #c9faff16, transparent 18%, transparent 74%, #dafaff20 89%, transparent);
-  border-left: 1px solid #c7f4ff2a;
-  border-right: 1px solid #fff4cc26;
+  background: linear-gradient(100deg, #c9faff22, transparent 18%, #a3f4ef0a 55%, #dafaff26 91%, transparent);
   border-radius: inherit;
+  z-index: 3;
 }
 
 @keyframes mage-idle {
