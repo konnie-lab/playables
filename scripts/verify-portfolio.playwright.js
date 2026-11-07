@@ -24,7 +24,15 @@ async (page) => {
     check(await page.locator('#projectName').textContent() === 'COURTSIDE', 'Basketball selected');
     check(await page.locator('#projectCount').textContent() === '02 / 02', 'Panel counter follows selection');
     check(await page.evaluate(() => document.getElementById('gameFrame').contentWindow.app.audio.muted), 'Mute survives project change');
-    check((await page.locator('.standalone-link').getAttribute('href')).startsWith('basketball/'), 'Standalone link matches project');
+    check(await page.locator('.project-section').count() === 2, 'Both project sections remain on the page');
+    check((await page.locator('.standalone-link').nth(0).getAttribute('href')).startsWith('castle-duels/'), 'Castle standalone link');
+    check((await page.locator('.standalone-link').nth(1).getAttribute('href')).startsWith('basketball/'), 'Courtside standalone link');
+    await page.locator('[data-try-project="0"]').click();
+    await ready();
+    check(await page.locator('#projectName').textContent() === 'CASTLE DUELS', 'Castle project CTA selects Castle');
+    await page.locator('[data-try-project="1"]').click();
+    await ready();
+    check(await page.locator('#projectName').textContent() === 'COURTSIDE', 'Courtside project CTA selects Courtside');
     await page.locator('#restartBtn').click();
     await ready();
     check(await page.evaluate(() => document.getElementById('gameFrame').contentWindow.app.audio.muted), 'Mute survives restart');

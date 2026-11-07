@@ -2,7 +2,7 @@
 
 Static portfolio for https://konnie-lab.github.io/playables/.
 
-The home page presents two live projects inside the same workshop: Castle Duels and COURTSIDE. Translucent chevrons at the left/right edges of the scene switch the background, characters, project description and playable together; the compact top panel shows the current project name, 01 / 02 counter, and previous/next arrows. On narrow phones, the arrows sit beside the upper part of the phone; reserved side gutters keep their touch areas clear of the game. The top panel uses the same translucent workshop styling with a small green status light. Switching is manual, with a soft artwork fade; the previous app is destroyed before the iframe is replaced. Sound preference survives switching and restart. The player supports restart, an expanded portrait/landscape view, keyboard Escape and automatic pause when off screen or in a hidden tab. Workshop ambience respects reduced-motion preferences.
+The home page presents two live projects inside the same workshop: Castle Duels and COURTSIDE. Translucent chevrons at the left/right edges of the scene switch the background, characters and playable together; the compact top panel shows the current project name, 01 / 02 counter, and previous/next arrows. On narrow phones, the arrows sit beside the upper part of the phone; reserved side gutters keep their touch areas clear of the game. The top panel uses the same translucent workshop styling with a small green status light. Switching is manual, with a soft artwork fade; the previous app is destroyed before the iframe is replaced. Sound preference survives switching and restart. The player supports restart, an expanded portrait/landscape view, keyboard Escape and automatic pause when off screen or in a hidden tab. Workshop ambience respects reduced-motion preferences.
 
 The compact introduction keeps one headline, “Ideas into play.” The duplicate headline, extra introduction links and merge instruction have been removed. The workshop footer reads “HANDCRAFTED WITH CODE & MAGIC”. Header plus introduction occupy approximately 200px at 1440px width, 197px at 390px width and 146px in 844×390 landscape.
 
@@ -53,7 +53,7 @@ cd C:\JS\playables-main
 npm run dev
 ```
 
-Open http://127.0.0.1:4178/playables/. `npm run preview` is an equivalent command. Node.js is required; no dependency installation or build step is needed just to preview the portfolio. Refresh the browser after editing files. Stop the server with Ctrl+C. If port 4178 is already occupied by this preview, use the existing browser URL or stop the old server before starting a new one. Keep relative asset paths so GitHub Pages works under `/playables/`.
+Open http://127.0.0.1:4178/playables/. `npm run preview` is an equivalent command. Node.js is required; no dependency installation or build step is needed just to preview the portfolio. Refresh the browser after editing files. Stop the server with Ctrl+C. If port 4178 is occupied, the server automatically tries 4179, 4180 and so on. Open the exact URL printed in the terminal. Existing servers are left running. Keep relative asset paths so GitHub Pages works under `/playables/`.
 
 ## Optimize workshop images
 
@@ -66,3 +66,5 @@ Spell sparks now use the original `pixi-blank/src/fx/SparkBurstFX.js` behavior a
 The Process navigation targets the three steps. Merge/summon FX use explicit default animation lists in the original merge and smoke_circle atlases; frame images are unchanged. The refreshed export passes all four project browser scenarios, including rendered FX playback and completion.
 
 The paper sticker has been removed from both scenes to leave the workshop art clear. The project selector stays in the scene. The chamber athlete floats on a gentle closed path: two compositor transform animations, each 4.8 seconds, with horizontal and vertical motion offset by a quarter cycle. There is no rotation. A local 5.2-second RAF sample measured median 8.3ms, p95 12.6ms and no gaps above 33ms; performance depends on the device.
+
+Fresh from the Lab keeps both project sections visible: 001 Castle Duels and 002 COURTSIDE. Each Try the playable link selects its own project and scrolls to the player; standalone links always open their corresponding game.

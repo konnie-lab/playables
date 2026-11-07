@@ -5,7 +5,7 @@ import path from 'node:path';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.webp': 'image/webp', '.png': 'image/png', '.svg': 'image/svg+xml' };
-createServer(async (request, response) => {
+const server = createServer(async (request, response) => {
   try {
     let pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
     if (pathname.startsWith('/playables/')) pathname = pathname.slice('/playables'.length);
@@ -22,4 +22,17 @@ createServer(async (request, response) => {
   } catch {
     response.writeHead(404).end('Not found');
   }
-}).listen(4178, '127.0.0.1', () => console.log('Portfolio: http://127.0.0.1:4178'));
+});
+
+let port = 4178;
+server.on('error', error => {
+  if (error.code === 'EADDRINUSE' && port < 65535) {
+    console.log(`Port ${port} is busy, trying ${port + 1}...`);
+    server.listen(++port, '127.0.0.1');
+    return;
+  }
+  console.error(`Preview failed: ${error.message}`);
+  process.exitCode = 1;
+});
+server.once('listening', () => console.log(`Portfolio: http://127.0.0.1:${server.address().port}/playables/`));
+server.listen(port, '127.0.0.1');
