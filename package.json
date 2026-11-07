@@ -2,8 +2,10 @@
   "name": "konnie-lab-portfolio",
   "private": true,
   "scripts": {
+    "dev": "node preview.mjs",
     "preview": "node preview.mjs",
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "prepare:basketball-cast": "node scripts/prepare-basketball-cast.mjs"
   },
   "devDependencies": {
     "sharp": "0.34.5"

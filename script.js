@@ -16,6 +16,17 @@ let expanded = false;
 let previousFocus;
 let playerVisible = true;
 let gameDocument;
+const projects = [
+  { id: 'castle', name: 'Castle Duels', url: 'castle-duels/index.html?v=20261103-sound1',
+    tagline: 'Small army. Big little battle.', description: ['Merge your units, build your squad, and take on the enemy.', 'A bite-sized battle with a little strategy and a lot of character.'],
+    tags: ['3D + 2D', 'MERGE & BATTLE', 'INTERACTIVE DEMO'] },
+  { id: 'basketball', name: 'COURTSIDE', url: 'basketball/index.html?v=20261107',
+    tagline: 'Your team. Your call.', description: ['Pick your captain, hire a coach, and build a team with a budget that matters.', 'Clutch shots, missed chances, and courtside emotions. Every choice changes the game.'],
+    tags: ['2D + SHADERS', 'BASKETBALL MANAGEMENT', 'INTERACTIVE DEMO'] },
+];
+let projectIndex = 0;
+const previousProject = document.getElementById('previousProject');
+const nextProject = document.getElementById('nextProject');
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -32,6 +43,7 @@ sparkTexture.src = 'assets/castle-workshop/star_fx_yellow.webp';
 function updateWorkshopEffects() {
   workshop.classList.toggle('workshop-hidden', document.hidden);
   const running = sparkTexture.complete && sparkTexture.naturalWidth > 0 &&
+    projects[projectIndex].id === 'castle' &&
     !document.hidden && !reducedMotion.matches &&
     !document.body.classList.contains('ambience-paused') &&
     !workshop.classList.contains('workshop-offscreen');
@@ -75,10 +87,14 @@ function waitForGame() {
     clearTimeout(loadDeadline);
     loading.hidden = true;
     restart.disabled = false;
-    gameSound = frame.contentWindow.app.main.soundButton;
-    if (soundMuted !== undefined) gameSound.setMuted(soundMuted);
-    gameSound.on('soundChanged', syncSoundButton);
-    syncSoundButton(gameSound.muted);
+    const game = frame.contentWindow.app;
+    gameSound = game.main.soundButton;
+    if (soundMuted !== undefined) {
+      if (gameSound) gameSound.setMuted(soundMuted);
+      else game.audio.muted = soundMuted;
+    }
+    gameSound?.on('soundChanged', syncSoundButton);
+    syncSoundButton(gameSound ? gameSound.muted : game.audio.muted);
     sound.disabled = false;
     status.textContent = '';
     if (gameDocument !== frame.contentDocument) {
@@ -109,20 +125,62 @@ function syncSoundButton(muted) {
 }
 
 sound.addEventListener('click', () => {
-  if (!gameSound) return;
-  gameSound.setMuted(!gameSound.muted);
+  const game = frame.contentWindow?.app;
+  if (!game) return;
+  if (gameSound) gameSound.setMuted(!gameSound.muted);
+  else {
+    game.audio.muted = !game.audio.muted;
+    syncSoundButton(game.audio.muted);
+  }
   // Keep audio activation in the trusted click, including clicks outside the iframe.
   frame.contentWindow.app.audio.unlock();
 });
 
-restart.addEventListener('click', () => {
+function loadProject() {
+  clearInterval(readyTimer);
+  clearTimeout(loadDeadline);
   loading.hidden = false;
   restart.disabled = true;
   sound.disabled = true;
   gameSound?.off('soundChanged', syncSoundButton);
   gameSound = null;
-  status.textContent = 'Restarting Castle Duels…';
-  frame.src = frame.src;
+  const project = projects[projectIndex];
+  loading.querySelector('span').textContent = project.name;
+  status.textContent = '';
+  frame.contentWindow?.app?.destroy();
+  frame.title = `${project.name} — interactive playable demo`;
+  frame.src = project.url;
+}
+
+restart.addEventListener('click', loadProject);
+
+function selectProject(index) {
+  projectIndex = (index + projects.length) % projects.length;
+  const project = projects[projectIndex];
+  workshop.dataset.project = project.id;
+  document.getElementById('projectName').textContent = project.name.toUpperCase();
+  document.getElementById('projectCount').textContent = `0${projectIndex + 1} / 02`;
+  const other = projects[(projectIndex + 1) % projects.length].name;
+  previousProject.setAttribute('aria-label', `Previous project: ${other}`);
+  nextProject.setAttribute('aria-label', `Next project: ${other}`);
+  document.querySelector('.project-title .eyebrow').textContent = `FRESH FROM THE LAB / 00${projectIndex + 1}`;
+  document.getElementById('project-title').replaceChildren(document.createTextNode(project.name));
+  document.querySelector('.project-title > p:last-child').textContent = project.tagline;
+  document.querySelectorAll('.project-description > p').forEach((p, i) => p.textContent = project.description[i]);
+  document.querySelectorAll('.project-tags span').forEach((tag, i) => tag.textContent = project.tags[i]);
+  document.querySelector('.standalone-link').href = project.url;
+  if (expanded) player.setAttribute('aria-label', `${project.name} player`);
+  updateWorkshopEffects();
+  loadProject();
+}
+
+previousProject.addEventListener('click', () => selectProject(projectIndex - 1));
+nextProject.addEventListener('click', () => selectProject(projectIndex + 1));
+document.querySelectorAll('[data-project-step]').forEach(button => button.addEventListener('click', () => selectProject(projectIndex + Number(button.dataset.projectStep))));
+document.querySelector('.project-switcher').addEventListener('keydown', event => {
+  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+  event.preventDefault();
+  selectProject(projectIndex + (event.key === 'ArrowRight' ? 1 : -1));
 });
 
 function setExpanded(value) {
@@ -135,7 +193,7 @@ function setExpanded(value) {
   if (value) {
     player.setAttribute('role', 'dialog');
     player.setAttribute('aria-modal', 'true');
-    player.setAttribute('aria-label', 'Castle Duels player');
+    player.setAttribute('aria-label', `${projects[projectIndex].name} player`);
     close.focus();
   } else {
     player.removeAttribute('role');

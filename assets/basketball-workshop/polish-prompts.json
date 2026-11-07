@@ -1,0 +1,15 @@
+{
+  "tool": "built-in image_gen",
+  "edits": [
+    {
+      "source": "background.png",
+      "output": "background-gold.png",
+      "prompt": "Use case: precise-object-edit. Make ONLY a color/light correction to this exact workshop background. All of the central machine's emitted energy must be warm GOLD / amber, with NO turquoise, cyan, teal or green energy anywhere on the machine. Recolor all three luminous horizontal chamber rings, the court platform rim, the vertical light beam inside the glass, every glowing conduit and glass pipe, the lower central reservoir, the small vertical front-left tube below the KONNIE LAB plaque, the right curved outlet pipe and every reflected energy glow on adjacent metal to coherent luminous champagne-gold, honey and amber. Keep clear glass neutral and the highlights warm. Preserve exact geometry, object positions, camera, crop, monitor content, empty conveyor, machine plaque, miniature basketball court, shelves and props. Do not recolor the blue workshop background ambient lighting, blue monitors, phone game artwork or teal uniforms on screens. Do not add any people, text, gears or props. Maintain the original lighting quality and all detail. Pixel-aligned 1536x1024 background edit for existing animated overlays."
+    },
+    {
+      "source": "belt-captain.webp",
+      "output": "captain-balanced.png",
+      "prompt": "Use case: precise-object-edit. Redraw this basketball captain as ONE full-body transparent game-art cutout for a premium miniature 3D workshop scene. Keep his Black male face identity, short hair, teal number 7 uniform, ivory trim and white basketball sneakers. IMPORTANT: correct natural athletic human anatomy and balanced proportions, approximately 7.5 heads tall, lean long legs proportional to torso, normal sized hands, feet and shoulders, no heroic oversized muscles, no chibi proportions, no stretched limbs. Replace the entire pointing pose with a calm confident natural stance: both feet planted shoulder-width apart, knees relaxed, body upright and balanced; BOTH HANDS cradle an orange basketball naturally in front of his waist. Elbows close to the body. No pointing finger, no pointing arm, no twist, no exaggerated wide stance, no crouch. Head looks gently to his left (screen right) toward his seated coach. Match the previous cutout's warm amber key light from upper right and subtle cool fill from left. Premium polished 3D character render, natural stylization and clean readable silhouette. Camera is three-quarter front, slightly elevated about 20 degrees so the tops of the shoes are visible and feet can sit on a workshop conveyor. Entire body including both shoes, sufficient padding all around, genuinely transparent RGBA background, only a restrained contact shadow, no floor or pedestal. Portrait image."
+    }
+  ]
+}

@@ -7,6 +7,7 @@ const root = new URL('../assets/', import.meta.url);
 // Sprites retain approximately 2x their maximum displayed size.
 const assets = [
   ['castle-workshop/background', 1536, 84],
+  ['basketball-workshop/background-gold', 1536, 84],
   ['castle-workshop/mage-orange', 512, 84],
   ['castle-workshop/mage-blue', 512, 84],
   ['castle-workshop/bear', 512, 84],

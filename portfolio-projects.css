@@ -1,0 +1,105 @@
+/* Compact introduction, shared workshop, two authored worlds. */
+.site-header { height: 78px; }
+.intro { padding: 25px 5% 27px; align-items: center; gap: 24px; }
+.intro h1 { margin: 0; font-size: clamp(36px, 3.8vw, 58px); letter-spacing: -2.6px; }
+.intro h1 > span { color: var(--orange); }
+.intro-note { width: auto; padding: 0; }
+.intro-note p { font-size: 13px; line-height: 1.65; }
+.intro-note strong { font-weight: 500; color: #617476; }
+.room-label { padding: 5px 7px 5px 12px; z-index: 7; gap: 2px; border-color: #a9c3c14a; border-radius: 4px; background: #132c37e6; box-shadow: 0 4px 16px #00121b24; }
+.room-label > .status-dot { display: block; width: 6px; height: 6px; margin-right: 3px; }
+.project-switcher { position: absolute; inset: 0; pointer-events: none; z-index: 8; }
+.project-switcher button { position: absolute; top: 43%; width: 52px; height: 80px; padding: 11px; transform: translateY(-50%); background: #102b354a; color: #fff8df; opacity: .76; pointer-events: auto; transition: opacity .2s, background .2s; border-radius: 28px; }
+.project-switcher svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 3px #00141e); }
+#previousProject { left: 5px; }
+#nextProject { right: 5px; }
+.project-switcher button:hover, .project-switcher button:focus-visible { opacity: .95; background: #102b3533; }
+.player-expanded .project-switcher { visibility: hidden; }
+.project-current { display: grid; gap: 4px; min-width: 116px; text-align: center; font-size: 9px; letter-spacing: 1.2px; }
+.project-current small { color: #b4beb5; font-size: 8px; font-weight: 400; letter-spacing: 2px; }
+.room-kicker { padding-right: 0; border-right: 0; font-size: 8px; letter-spacing: 1.3px; color: #bac9c9; }
+.basketball-backdrop { position: absolute; inset: 0; background: url('assets/basketball-workshop/background-gold.webp') center / 100% 100% no-repeat; opacity: 0; transition: opacity .65s ease; }
+.basketball-cast { position: absolute; inset: 0; opacity: 0; transition: opacity .45s ease; pointer-events: none; }
+.conveyor-character, .chamber-content { transition: opacity .4s ease; }
+[data-project='basketball'] .basketball-backdrop,
+[data-project='basketball'] .basketball-cast { opacity: 1; }
+[data-project='basketball'] .conveyor-character,
+[data-project='basketball'] .chamber-content { opacity: 0; }
+[data-project='basketball'] .belt-arrow { filter: sepia(.7) saturate(2) hue-rotate(335deg); }
+[data-project='basketball'] .chamber-light-ring { border-color: #fff1d5; box-shadow: 0 0 7px 2px #ffe2a6, 0 0 16px 4px #ffa340, inset 0 0 8px 1px #ffcf88; }
+[data-project='basketball'] .chamber-light-wash { background: radial-gradient(ellipse, #fff0bd80, #ffb45340 40%, transparent 72%); }
+[data-project='basketball'] .machine-glow { background: radial-gradient(ellipse, #ffc06135, transparent 67%); }
+.court-character { position: absolute; transform-origin: 50% 96%; }
+.court-character img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom; transform-origin: 50% 96%; }
+/* Feet/chair/base contacts follow the belt's upper plane, not its front fascia. */
+.court-captain { left: 20%; top: 24.5%; width: 15%; height: 29.5%; }
+.court-captain img { animation: captain-breathe 3.4s ease-in-out infinite; transform-origin: 50% 100%; }
+.court-coach { left: 8%; top: 37%; width: 13%; height: 20.5%; }
+.court-coach .coach-base { mask-image: linear-gradient(transparent 51%, #000 57%); }
+.court-coach .coach-upper { mask-image: linear-gradient(#000 51%, transparent 57%); transform-origin: 52% 54%; animation: coach-talk 2.8s ease-in-out infinite; }
+.court-hoop { left: 32%; top: 24.7%; width: 12%; height: 26%; }
+.chamber-athlete-drift { position: absolute; left: 49.3%; top: 12.5%; width: 10%; height: 12%; animation: chamber-drift 4.8s ease-in-out infinite; will-change: transform; }
+.chamber-athlete { width: 100%; height: 100%; object-fit: contain; animation: chamber-athlete-hover 4.8s ease-in-out -1.2s infinite; will-change: transform; }
+.chamber-ball { position: absolute; left: 57.5%; top: 14.6%; width: 1.15%; filter: drop-shadow(0 0 3px #ffc470); animation: chamber-ball-spin 2.6s linear infinite; }
+.court-spotlight { position: absolute; top: 9.5%; width: 9%; height: 16%; background: linear-gradient(#ffe7a85c, #ffe7a805); clip-path: polygon(46% 0, 54% 0, 100% 100%, 0 100%); mix-blend-mode: screen; opacity: .45; transform-origin: 50% 0; animation: court-light 3.8s ease-in-out infinite; }
+.spotlight-left { left: 47%; transform: rotate(-12deg); }
+.spotlight-right { left: 56%; transform: rotate(12deg); animation-delay: -3.5s; }
+@keyframes coach-talk { 0%, 100% { transform: rotate(-1deg); } 38% { transform: rotate(2deg) translateY(1%); } 66% { transform: rotate(-.5deg); } }
+@keyframes captain-breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.01, 1.018); } }
+@keyframes chamber-ball-spin { to { transform: rotate(360deg); } }
+@keyframes chamber-athlete-hover { 0%, 100% { transform: translateY(3%); } 50% { transform: translateY(-5%); } }
+@keyframes court-light { 0%, 100% { opacity: .25; } 50% { opacity: .6; } }
+/* Shorter rhythms; rotating parts remain linear rather than easing to a stop. */
+.machine-gear img { animation-duration: 9.5s; }
+.gear-lower img { animation-duration: 11.3s; }
+.belt-arrow { animation-duration: 2s; }
+.chamber-light-ring, .chamber-light-wash { animation-duration: 4.8s; }
+.character-figure { animation-duration: 3s; }
+.conveyor-blue .character-figure, .conveyor-blue .character-shadow { animation-duration: 4.2s; }
+.conveyor-bear .character-figure { animation-duration: 3.8s; }
+.spell-orb { animation-duration: 2.8s; }
+.chamber-content img { animation-duration: 3.4s; }
+.chamber-content .chamber-mage-upgraded { animation-duration: 3.7s; }
+.chamber-vortex, .chamber-summon { animation-duration: 3.2s; }
+@media (max-width: 1050px) and (min-width: 721px) {
+  .room-kicker { display: none; }
+  .intro-note p { font-size: 12px; }
+  .phone-dock:not(.is-expanded) { width: 23%; top: 4%; right: 8%; }
+  .player-controls { margin-top: 9px; gap: 6px; }
+  .player-controls button { font-size: 10px; }
+}
+@media (max-width: 720px) {
+  .site-header { height: 70px; }
+  .intro { display: flex; flex-wrap: wrap; gap: 11px; padding: 20px 6% 22px; }
+  .intro h1 { font-size: clamp(32px, 7.3vw, 49px); letter-spacing: -1.8px; }
+  .intro-note { margin: 0; display: block; }
+  .intro-note p { font-size: 11px; line-height: 1.55; }
+  .room-label { top: 12px; left: 12px; padding: 4px 5px 4px 10px; gap: 0; }
+  .room-kicker { display: none; }
+  .project-switcher button { top: 330px; width: 44px; height: 56px; padding: 8px; }
+  .phone-dock:not(.is-expanded) { width: min(255px, calc(100% - 64px)); }
+  #previousProject { left: 0; }
+  #nextProject { right: 0; }
+  .project-current small { font-size: 7px; }
+  .room-footer > span { max-width: 150px; }
+}
+@media (max-height: 560px) and (min-width: 721px) {
+  .site-header { height: 60px; }
+  .intro { padding-top: 16px; padding-bottom: 18px; }
+  .intro h1 { font-size: 38px; }
+}
+@media (orientation: landscape) and (max-height: 650px) {
+  .is-expanded .phone-shell,
+  .is-expanded .phone-heading { width: min(900px, calc((100dvh - 120px) * 2.16), calc(100vw - 32px)); }
+  .is-expanded .phone-screen { aspect-ratio: 844 / 390; }
+  .is-expanded .phone-camera { left: 0; top: 50%; transform: translateY(-50%); width: 13px; height: 30%; border-radius: 0 12px 12px 0; }
+  .is-expanded .phone-camera::after { right: 4px; top: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .basketball-backdrop, .basketball-cast, .conveyor-character, .chamber-content { transition: none; }
+}
+
+.panel-project-arrow { display: grid; place-items: center; width: 44px; height: 44px; padding: 12px 15px; background: transparent; color: #f4ebd4; border-radius: 3px; }
+.panel-project-arrow svg { width: 14px; height: 20px; fill: none; stroke: currentColor; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.panel-project-arrow:hover, .panel-project-arrow:focus-visible { background: #d9cfaa20; color: #fff; }
+@keyframes chamber-drift { 0%, 100% { transform: translate3d(-2.5%, 0, 0); } 50% { transform: translate3d(2.5%, 0, 0); } }
