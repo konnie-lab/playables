@@ -17,7 +17,7 @@ let previousFocus;
 let playerVisible = true;
 let gameDocument;
 const projects = [
-  { id: 'castle', name: 'Castle Duels', url: 'castle-duels/index.html?v=20261103-sound1',
+  { id: 'castle', name: 'Castle Duels', url: 'castle-duels/index.html?v=20261107-image-upload',
     tagline: 'Small army. Big little battle.', description: ['Merge your units, build your squad, and take on the enemy.', 'A bite-sized battle with a little strategy and a lot of character.'],
     tags: ['3D + 2D', 'MERGE & BATTLE', 'INTERACTIVE DEMO'] },
   { id: 'basketball', name: 'COURTSIDE', url: 'basketball/index.html?v=20261107',
