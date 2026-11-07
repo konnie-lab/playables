@@ -2,6 +2,7 @@ import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { spawn } from 'node:child_process';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.webp': 'image/webp', '.png': 'image/png', '.svg': 'image/svg+xml' };
@@ -34,5 +35,14 @@ server.on('error', error => {
   console.error(`Preview failed: ${error.message}`);
   process.exitCode = 1;
 });
-server.once('listening', () => console.log(`Portfolio: http://127.0.0.1:${server.address().port}/playables/`));
+server.once('listening', () => {
+  const url = `http://127.0.0.1:${server.address().port}/playables/`;
+  console.log(`Portfolio: ${url}`);
+  if (process.argv.includes('--no-open')) return;
+  const command = process.platform === 'win32' ? 'rundll32.exe' : process.platform === 'darwin' ? 'open' : 'xdg-open';
+  const args = process.platform === 'win32' ? ['url.dll,FileProtocolHandler', url] : [url];
+  const browser = spawn(command, args, { detached: true, stdio: 'ignore', windowsHide: true });
+  browser.on('error', error => console.warn(`Could not open the browser: ${error.message}. Open ${url} manually.`));
+  browser.unref();
+});
 server.listen(port, '127.0.0.1');
