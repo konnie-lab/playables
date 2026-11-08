@@ -1,6 +1,6 @@
 # Konnie Lab — The playable workshop
 
-Static portfolio for https://konnie-lab.github.io/playables/.
+Static portfolio for https://konnie-lab.github.io/Git-Portfolio/.
 
 The home page presents two live projects inside the same workshop: Castle Duels and COURTSIDE. Translucent chevrons at the left/right edges of the scene switch the background, characters, project description and playable together; the compact top panel shows the current project name, 01 / 02 counter, and previous/next arrows. On narrow phones, the arrows sit beside the upper part of the phone; reserved side gutters keep their touch areas clear of the game. The top panel uses the same translucent workshop styling with a small green status light. Switching is manual, with a soft artwork fade; the previous app is destroyed before the iframe is replaced. Sound preference survives switching and restart. The player supports restart, an expanded portrait/landscape view, keyboard Escape and automatic pause when off screen or in a hidden tab. Workshop ambience respects reduced-motion preferences.
 
@@ -15,7 +15,7 @@ The compact introduction keeps one headline, “Ideas into play.” The duplicat
 - The chamber dunk and ball are copied unchanged from the playable. The six active runtime basketball images total 469,932 bytes. Generated source PNGs are not loaded by the page.
 - Workshop motion now uses shorter cycles: gears 9.5/11.3s linear, arrows 2s, rings 4.8s, character gestures around 2.6–4.2s. A short local RAF sample showed median 6.3ms and p95 14.8ms after the update; this is a local observation, not a device performance guarantee. CSS ambience pause, reduced motion and hidden/offscreen handling still apply to all layers.
 - `basketball/index.html` is the verified standalone export from `Konnie-Lab/playables/clients/konnie-lab/basketball-first-core/dist/basketball-first-core_default.html` (4,985,883 bytes). Refresh by running that project's check first, then copying the resulting HTML here. No game logic is modified in the portfolio copy.
-- `script.js` supports Castle Duels' in-game sound button and COURTSIDE's shared audio service. Project links remain relative for GitHub Pages under `/playables/`.
+- `script.js` supports Castle Duels' in-game sound button and COURTSIDE's shared audio service. Project links remain relative for GitHub Pages under `/Git-Portfolio/`.
 
 Verification: `scripts/verify-portfolio.playwright.js` runs through Playwright MCP's `browser_run_code_unsafe` filename argument against the local preview. It checks six viewport sizes, switching/restarting with persisted mute, rapid repeated switching, expanded landscape, Escape, reduced motion, offscreen pause/resume and local resource/page errors. The current pass has no page exceptions or failed local resources. A separate real-input pass completed COURTSIDE's first match inside the iframe, 80:79. The copied basketball export also passed its 12 source-project gameplay checks. GitHub publication is a separate step; these changes are local.
 
@@ -49,11 +49,11 @@ The current export includes the Fight camera fix: event predicates respond only 
 From the portfolio folder, run:
 
 ```powershell
-cd C:\JS\playables-main
+cd C:\JS\Git-Portfolio
 npm run dev
 ```
 
-The default browser opens automatically at http://127.0.0.1:4178/playables/ (or the next free port). Use `npm run dev -- --no-open` to start without opening a browser. `npm run preview` is an equivalent command. Node.js is required; no dependency installation or build step is needed just to preview the portfolio. Refresh the browser after editing files. Stop the server with Ctrl+C. If port 4178 is occupied, the server automatically tries 4179, 4180 and so on. Open the exact URL printed in the terminal. Existing servers are left running. Keep relative asset paths so GitHub Pages works under `/playables/`.
+The default browser opens automatically at http://127.0.0.1:4178/Git-Portfolio/ (or the next free port). Use `npm run dev -- --no-open` to start without opening a browser. `npm run preview` is an equivalent command. Node.js is required; no dependency installation or build step is needed just to preview the portfolio. Refresh the browser after editing files. Stop the server with Ctrl+C. If port 4178 is occupied, the server automatically tries 4179, 4180 and so on. Open the exact URL printed in the terminal. Existing servers are left running. Keep relative asset paths so GitHub Pages works under `/Git-Portfolio/`.
 
 ## Optimize workshop images
 

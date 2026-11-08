@@ -11,7 +11,7 @@ async (page) => {
   const layouts = [];
   try {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto('http://127.0.0.1:4178/playables/');
+    await page.goto('http://127.0.0.1:4178/Git-Portfolio/');
     await ready();
     check(await page.locator('#projectName').textContent() === 'CASTLE DUELS', 'Castle default project');
     await page.locator('#soundBtn').click();
