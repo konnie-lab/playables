@@ -4,7 +4,7 @@
     {
       "name": "background-gears",
       "referenced_image_paths": [
-        "C:\\JS\\Git-Portfolio\\assets\\workshop-layers\\background.png"
+        "C:\\JS\\Konnie-Portfolio\\assets\\workshop-layers\\background.png"
       ],
       "transparent_background": false,
       "prompt": "Precise local edit of the supplied 1536x1024 workshop background. Preserve the entire image exactly: camera, lighting, empty conveyor, machine body, brass KONNIE LAB sign, glass chamber, screens, objects, furniture. Inside the machine's FRONT rectangular recessed gear window directly BELOW the KONNIE LAB plaque, remove ONLY the TWO largest brass gears on the LEFT half of that window: the smaller upper-left wheel around image coordinate (812,546) and larger lower-left wheel around (849,596). Reconstruct a dark bronze inner mechanism recess behind those two wheels, ready to overlay animated gears. Keep the small gears at the right of that window, glow and sparks at lower-right, all window borders, external gears on the LEFT side of the machine, all pipes and everything else completely unchanged. Do not remove the machine's external side gears. No characters or chevrons on conveyor. Output same 1536x1024 composition."
@@ -28,7 +28,7 @@
     {
       "name": "gear",
       "referenced_image_paths": [
-        "C:\\JS\\Git-Portfolio\\assets\\workshop-layers\\background.png"
+        "C:\\JS\\Konnie-Portfolio\\assets\\workshop-layers\\background.png"
       ],
       "transparent_background": true,
       "prompt": "Create ONE isolated circular brass gear sprite matching the warm bronze steampunk machinery inside the FRONT window beneath KONNIE LAB in this reference. Crucial: STRICTLY FRONT-ON ORTHOGRAPHIC VIEW, perfectly circular symmetrical silhouette, NOT tilted or elliptical; perspective will be applied in code. About 20 evenly spaced chunky machined teeth, a raised central bronze spindle hub, six circular dark through-holes around the center, concentric engraved rings, warm antique golden brass with restrained highlights and dark bronze bevels. No shadows outside the gear; transparent gaps and holes, NO backdrop, NO housing, NO ground, NO letters. Warm amber material with subtle cool fill to match scene, not overly shiny or orange. One centered perfectly circular wheel fully visible, generous transparent padding, 1024x1024 true RGBA sprite."

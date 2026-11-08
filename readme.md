@@ -49,7 +49,7 @@ The current export includes the Fight camera fix: event predicates respond only 
 From the portfolio folder, run:
 
 ```powershell
-cd C:\JS\Git-Portfolio
+cd C:\JS\Konnie-Portfolio
 npm run dev
 ```
 
