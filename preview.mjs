@@ -9,7 +9,7 @@ const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 
 const server = createServer(async (request, response) => {
   try {
     let pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
-    if (pathname.startsWith('/Git-Portfolio/')) pathname = pathname.slice('/Git-Portfolio'.length);
+    if (pathname.startsWith('/playables/')) pathname = pathname.slice('/playables'.length);
     let filename = path.resolve(root, '.' + pathname);
     const relative = path.relative(root, filename);
     if (relative.startsWith('..') || path.isAbsolute(relative) || relative.split(path.sep).some(part => part.startsWith('.'))) {
@@ -36,7 +36,7 @@ server.on('error', error => {
   process.exitCode = 1;
 });
 server.once('listening', () => {
-  const url = `http://127.0.0.1:${server.address().port}/Git-Portfolio/`;
+  const url = `http://127.0.0.1:${server.address().port}/playables/`;
   console.log(`Portfolio: ${url}`);
   if (process.argv.includes('--no-open')) return;
   const command = process.platform === 'win32' ? 'rundll32.exe' : process.platform === 'darwin' ? 'open' : 'xdg-open';
