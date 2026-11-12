@@ -2,6 +2,29 @@
 
 Static portfolio for https://konnie-lab.github.io/playables/.
 
+## Pageview counter (2026-11-12)
+
+`analytics.js` counts only public, top-level opens of `/playables/` (including its `index.html` alias) and `/playables/about.html`. They appear separately as **Konnie Lab — Portfolio** and **Konnie Lab — About me** in https://konnie-lab.goatcounter.com/, alongside the separately integrated Save Your Job page. Each reload is another view, not another identified person. Embedded games, switching projects, restarting games, archives, local previews and automated browsers are excluded.
+
+The nonblocking request uses `ns=true`, no browser storage or cookies, and a fixed path/title without URL parameters. Only the referring origin is sent; it can be absent due to browser/app privacy rules. Country is derived by GoatCounter from the request IP. User-selected account settings enable Referrer and Country; settings persistence must be confirmed in the account. Counter failure does not block the site. No third-party analytics script or game event tracking is added.
+
+Run `node scripts/verify-analytics.mjs` for path/privacy/exclusion checks. Browser verification also covered one count per open/reload, About as a separate path, no extra count on project switching/restart, absent cookies/storage, and normal loading with the endpoint blocked. All browser analytics requests in these tests were intercepted, without sending test views.
+
+## Portfolio asset audit (2026-11-12)
+
+Audited the actual top-level page requests and Sharp image metadata, excluding the standalone playable HTML and its embedded assets. No asset recompression or game changes were needed.
+
+| Loaded artwork | Bytes | Notes |
+| --- | ---: | --- |
+| Home, both workshop scenes combined | 879,943 | 17 WebPs + one 195-byte SVG, counted once per unique file |
+| Castle background | 255,460 | 1536 × 1024, included above |
+| Basketball background | 263,694 | 1536 × 1024, included above |
+| About portrait | 231,946 | 1122 × 1402; around 481 × 588 displayed at 1440px viewport |
+
+The active raster images are already WebP. Sharp recipes generate backgrounds at quality 84 and most sprites at quality 84–88 with full alpha quality. Character/gear sizes generally retain roughly 2x display resolution; tiny ball/Summon textures have extra headroom but together cost less than 10 KB. Large source PNGs, older workshop backgrounds and unused variants are not requested. The 1,153,005-byte CV PDF loads only when its link is followed. Google Fonts loads separately; these figures measure artwork file bytes, not total transfer or decoded GPU memory.
+
+The main remaining opportunity is to defer the second workshop's 469,932 bytes of artwork until selection. Currently both scenes load upfront for immediate switching. This was an audit only: that behavior and the existing image quality remain unchanged. The existing portfolio browser checks passed at six viewport sizes, with project switching/restart, sound persistence and expanded view intact; About also fits a 390px viewport.
+
 The home page presents two live projects inside the same workshop: Castle Duels and COURTSIDE. Translucent chevrons at the left/right edges of the scene switch the background, characters, project description and playable together; the compact top panel shows the current project name, 01 / 02 counter, and previous/next arrows. On narrow phones, the arrows sit beside the upper part of the phone; reserved side gutters keep their touch areas clear of the game. The top panel uses the same translucent workshop styling with a small green status light. Switching is manual, with a soft artwork fade; the previous app is destroyed before the iframe is replaced. Sound preference survives switching and restart. The player supports restart, an expanded portrait/landscape view, keyboard Escape and automatic pause when off screen or in a hidden tab. Workshop ambience respects reduced-motion preferences.
 
 The compact introduction keeps one headline, “Ideas into play.” The duplicate headline, extra introduction links and merge instruction have been removed. The workshop footer reads “HANDCRAFTED WITH CODE & MAGIC”. Header plus introduction occupy approximately 200px at 1440px width, 197px at 390px width and 146px in 844×390 landscape.
